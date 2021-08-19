@@ -120,9 +120,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/finches/'
+LOGIN_REDIRECT_URL = '/jobtitles/'
 
-LOGOUT_REDIRECT_URL = '/finches/'
+LOGOUT_REDIRECT_URL = '/jobtitles/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

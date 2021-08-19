@@ -15,6 +15,10 @@ def jobtitles_index(request):
   jobtitles = JobTitle.objects.all()
   return render(request, 'jobtitles/index.html', { 'jobtitles': jobtitles })
 
+def jobtitles_detail(request, jobtitle_id):
+  jobtitle = JobTitle.objects.get(id=jobtitle_id)
+  return render(request, 'jobtitles/detail.html', { 'jobtitle': jobtitle })
+
 class JobTitleCreate(CreateView):
   model = JobTitle
   fields = '__all__'
