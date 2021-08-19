@@ -27,13 +27,19 @@ class JobTitle(models.Model):
 
 class Comment(models.Model):
     comment = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    jobtitle = models.ForeignKey(JobTitle, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    jobtitle = models.ForeignKey(JobTitle, on_delete=models.CASCADE, null=True)
     tag = models.CharField(
         max_length=1,
         choices=TAGS,
         default=TAGS[0][0]
     )
+
+    
+
+
+
+
 
 
 

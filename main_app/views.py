@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import JobTitle
+from .forms import CommentForm
 
 # Create your views here.
 def home(request):
@@ -17,7 +18,11 @@ def jobtitles_index(request):
 
 def jobtitles_detail(request, jobtitle_id):
   jobtitle = JobTitle.objects.get(id=jobtitle_id)
-  return render(request, 'jobtitles/detail.html', { 'jobtitle': jobtitle })
+  comment_form = CommentForm()
+  return render(request, 'jobtitles/detail.html', { 
+    'jobtitle': jobtitle,
+    'comment_form': comment_form 
+  })
 
 @login_required
 def add_comment(request, jobtitle_id):

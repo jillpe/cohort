@@ -22,13 +22,13 @@
     </form>
     <table class="striped">
       <thead>
-        <tr><th>Date</th><th>Meal</th></tr>
+        <tr><th>Tags</th><th>Comment</th></tr>
       </thead>
       <tbody>
         {% for comment in jobtitle.comment_set.all %}
           <tr>
+            <td>{{comment.tag}}</td>
             <td>{{comment.comment}}</td>
-            <td>{{comment.get_comment_display}}</td>
           </tr>
         {% endfor %}
       </tbody>
