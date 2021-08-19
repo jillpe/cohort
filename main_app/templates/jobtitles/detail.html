@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>{{ jobtitle.name }}</h1>
+<h1>Title: {{ jobtitle.name }}</h1>
+<h2>Company: {{ jobtitle.company }} </h2>
+<div>Link: {{ jobtitle.link }}</div>
+<div>Description: {{ jobtitle.initial_description }}</div>
+<div>Skills: {{ jobtitle.skills }}</div>
+<div>Years: {{ jobtitle.experience }}</div>
+<div>Location: {{ jobtitle.location }}</div>
+<div>Salary: {{ jobtitle.salary }}</div>
 
 {% if jobtitle.user == user %}
 <a href="{% url 'jobtitles_update' jobtitle.id %}">Update</a>
