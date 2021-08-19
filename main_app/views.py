@@ -19,6 +19,15 @@ def jobtitles_detail(request, jobtitle_id):
   jobtitle = JobTitle.objects.get(id=jobtitle_id)
   return render(request, 'jobtitles/detail.html', { 'jobtitle': jobtitle })
 
+@login_required
+def add_comment(request, jobtitle_id):
+  form = CommentForm(request.POST)
+  if form.is_valid():
+      new_comment = form.save(commit=False)
+      new_comment.jobtitle_id = jobtitle_id
+      new_comment.save()
+  return redirect('detail', jobtitle_id=jobtitle_id)
+
 class JobTitleCreate(CreateView):
   model = JobTitle
   fields = '__all__'

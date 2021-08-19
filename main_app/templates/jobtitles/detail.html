@@ -14,5 +14,31 @@
 <a href="{% url 'jobtitles_update' jobtitle.id %}">Update</a>
 {% endif %}
 
+<div class="col s6">
+    <form action="{% url 'add_comment' jobtitle.id %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" class="btn" value="Add Comment">
+    </form>
+    <table class="striped">
+      <thead>
+        <tr><th>Date</th><th>Meal</th></tr>
+      </thead>
+      <tbody>
+        {% for comment in jobtitle.comment_set.all %}
+          <tr>
+            <td>{{comment.comment}}</td>
+            <td>{{comment.get_comment_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  const selectEl = document.getElementById('id_tag');
+  M.FormSelect.init(selectEl);
+</script>
 
 {% endblock %} 
