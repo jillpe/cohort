@@ -24,6 +24,10 @@ class JobTitleCreate(CreateView):
   fields = '__all__'
   success_url = '/jobtitles/'
 
+class JobTitleUpdate(UpdateView):
+  model = JobTitle
+  fields = '__all__'
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':

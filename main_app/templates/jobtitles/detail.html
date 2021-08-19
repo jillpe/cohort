@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Job Details</h1>
+<h1>{{ jobtitle.name }}</h1>
 
-{{ jobtitle.name }}
+{% if jobtitle.user == user %}
+<a href="{% url 'jobtitles_update' jobtitle.id %}">Update</a>
+{% endif %}
+
 
 {% endblock %} 
