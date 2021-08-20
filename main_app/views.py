@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms.models import model_to_dict
-from .models import Comment, JobTitle, Tag
+from .models import Comment, JobTitle, Tag, Applicant
 from .forms import CommentForm
 
 # Create your views here.
@@ -93,6 +93,12 @@ def unassoc_tag(request, jobtitle_id, tag_id):
     jobtitle = JobTitle.objects.get(id=jobtitle_id)
     tag.jobtitle_set.remove(jobtitle)
     return redirect('detail', jobtitle_id=jobtitle_id)
+
+def applicants_detail(request):
+  applicant = Applicant.objects.get(user=user)
+  return render(request, 'applicants/detail.html', { 
+    'applicant': applicant
+  })
 
 def signup(request):
   error_message = ''
