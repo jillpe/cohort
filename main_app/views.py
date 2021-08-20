@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms.models import model_to_dict
-from .models import Comment, JobTitle
+from .models import Comment, JobTitle, Tag
 from .forms import CommentForm
 
 # Create your views here.
@@ -19,10 +19,12 @@ def jobtitles_index(request):
 
 def jobtitles_detail(request, jobtitle_id):
   jobtitle = JobTitle.objects.get(id=jobtitle_id)
+  tags_jobtitle_doesnt_have = Tag.objects.exclude(id__in = jobtitle.tags.all().values_list('id'))
   comment_form = CommentForm()
   return render(request, 'jobtitles/detail.html', { 
     'jobtitle': jobtitle,
-    'comment_form': comment_form 
+    'comment_form': comment_form,
+    'tags': tags_jobtitle_doesnt_have,
   })
 
 @login_required
@@ -52,9 +54,6 @@ def update_comment(request, jobtitle_id, comment_id):
     'comment_form': comment_form 
   })
 
-      
-        # return redirect('detail', jobtitle_id=jobtitle_id)
-
 
 class JobTitleCreate(CreateView):
   model = JobTitle
@@ -64,6 +63,36 @@ class JobTitleCreate(CreateView):
 class JobTitleUpdate(UpdateView):
   model = JobTitle
   fields = '__all__'
+
+class TagList(LoginRequiredMixin, ListView):
+  model = Tag
+
+class TagDetail(LoginRequiredMixin, DetailView):
+  model = Tag
+
+class TagCreate(LoginRequiredMixin, CreateView):
+  model = Tag
+  fields = '__all__'
+
+class TagUpdate(LoginRequiredMixin, UpdateView):
+  model = Tag
+  fields = ['name', 'color']
+
+class TagDelete(LoginRequiredMixin, DeleteView):
+  model = Tag
+  success_url = '/tags/'
+
+@login_required
+def assoc_tag(request, jobtitle_id, tag_id):
+    JobTitle.objects.get(id=jobtitle_id).tags.add(tag_id)
+    return redirect('detail', jobtitle_id=jobtitle_id)
+
+@login_required
+def unassoc_tag(request, jobtitle_id, tag_id):
+    tag = Tag.objects.get(id=tag_id)
+    jobtitle = JobTitle.objects.get(id=jobtitle_id)
+    tag.jobtitle_set.remove(jobtitle)
+    return redirect('detail', jobtitle_id=jobtitle_id)
 
 def signup(request):
   error_message = ''
