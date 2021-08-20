@@ -4,11 +4,12 @@ from datetime import date
 from django.contrib.auth.models import User
 
 TAGS = (
-    ('Job is Cool', 'Job is Cool'),
-    ('Job is Aight', 'Job is Aight'),
-    ('Technical Interview...thats tuff', 'Technical Interview...thats tuff'),
-    ('&#128175;', '&#128175;'),
+    ("Job is Cool", "Job is Cool"),
+    ("Job is Aight", "Job is Aight"),
+    ("Technical Interview...thats tuff", "Technical Interview...thats tuff"),
+    ("&#128175;", "&#128175;"),
 )
+
 
 class JobTitle(models.Model):
     name = models.CharField(max_length=300)
@@ -23,6 +24,7 @@ class JobTitle(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Comment(models.Model):
     comment = models.TextField()
@@ -42,3 +44,4 @@ class Comment(models.Model):
 
 
 
+    # this is kevins edit
