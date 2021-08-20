@@ -20,7 +20,7 @@ class JobTitle(models.Model):
     experience = models.IntegerField()
     location = models.CharField(max_length=200)
     salary = models.CharField(max_length=500)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
@@ -35,13 +35,5 @@ class Comment(models.Model):
         choices=TAGS,
         default=TAGS[0][0]
     )
-
-    # this is kevins edit
-
-
-
-
-
-
 
     # this is kevins edit

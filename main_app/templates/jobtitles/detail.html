@@ -29,6 +29,11 @@
           <tr>
             <td>{{comment.tag}}</td>
             <td>{{comment.comment}}</td>
+            <td>
+            <a href="{% url 'delete_comment' comment.jobtitle_id comment.id %}">
+              DELETE
+              </a>
+            </td>
           </tr>
         {% endfor %}
       </tbody>

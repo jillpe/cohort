@@ -5,7 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import JobTitle
+from .models import Comment, JobTitle
 from .forms import CommentForm
 
 # Create your views here.
@@ -33,9 +33,17 @@ def add_comment(request, jobtitle_id):
       new_comment.save()
   return redirect('detail', jobtitle_id=jobtitle_id)
 
+@login_required
+def delete_comment(request, jobtitle_id, comment_id):
+    jobtitle = JobTitle.objects.get(id=jobtitle_id)
+    comment = Comment.objects.get(jobtitle_id=jobtitle_id, id=comment_id)
+    jobtitle.comment_set.remove(comment)
+    return redirect('detail', jobtitle_id=jobtitle_id)
+
+
 class JobTitleCreate(CreateView):
   model = JobTitle
-  fields = '__all__'
+  fields = ['name', 'link', 'company', 'skills', 'initial_description', 'experience', 'location', 'salary']
   success_url = '/jobtitles/'
 
 class JobTitleUpdate(UpdateView):
