@@ -3,21 +3,19 @@ from django.urls import reverse
 from datetime import date
 from django.contrib.auth.models import User
 
-MEALS = (
-    ('B', 'Breakfast'),
-    ('L', 'Lunch'),
-    ('D', 'Dinner')
-)
+MEALS = (("B", "Breakfast"), ("L", "Lunch"), ("D", "Dinner"))
+
 
 class Toy(models.Model):
-  name = models.CharField(max_length=50)
-  color = models.CharField(max_length=20)
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
 
-  def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name
 
-  def get_absolute_url(self):
-    return reverse('toys_detail', kwargs={'pk': self.id})
+    def get_absolute_url(self):
+        return reverse("toys_detail", kwargs={"pk": self.id})
+
 
 # Create your models here.
 class Finch(models.Model):
@@ -32,18 +30,15 @@ class Finch(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'finch_id': self.id})
+        return reverse("detail", kwargs={"finch_id": self.id})
 
     def fed_for_today(self):
         return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
 
+
 class Feeding(models.Model):
-    date = models.DateField('feeding date')
-    meal = models.CharField(
-        max_length=1,
-        choices=MEALS,
-        default=MEALS[0][0]
-    )
+    date = models.DateField("feeding date")
+    meal = models.CharField(max_length=1, choices=MEALS, default=MEALS[0][0])
 
     finch = models.ForeignKey(Finch, on_delete=models.CASCADE)
 
@@ -51,4 +46,6 @@ class Feeding(models.Model):
         return f"{self.get_meal_display()} on {self.date}"
 
     class Meta:
-        ordering = ['-date']
+        ordering = ["-date"]
+
+    # hi this is kevins text
