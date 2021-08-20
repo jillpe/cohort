@@ -34,13 +34,17 @@
               DELETE
               </a>
             </td>
+            <td>
+            <a href="{% url 'update_comment' comment.jobtitle_id comment.id %}">
+              UPDATE
+              </a>
+            </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
 </div>
-
 <script>
   const selectEl = document.getElementById('id_tag');
   M.FormSelect.init(selectEl);
