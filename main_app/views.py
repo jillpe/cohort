@@ -5,6 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.forms.models import model_to_dict
 from .models import Comment, JobTitle
 from .forms import CommentForm
 
@@ -40,6 +41,20 @@ def delete_comment(request, jobtitle_id, comment_id):
     jobtitle.comment_set.remove(comment)
     return redirect('detail', jobtitle_id=jobtitle_id)
 
+def update_comment(request, jobtitle_id, comment_id):
+    jobtitle = JobTitle.objects.get(id=jobtitle_id)
+    comment = Comment.objects.get(id=comment_id)
+    jobtitle.comment_set.remove(comment)
+    comment_form = CommentForm(initial=model_to_dict(comment))
+    return render(request, 'jobtitles/detail.html', { 
+    'jobtitle': jobtitle,
+    'comment_id': comment_id,
+    'comment_form': comment_form 
+  })
+
+      
+        # return redirect('detail', jobtitle_id=jobtitle_id)
+
 
 class JobTitleCreate(CreateView):
   model = JobTitle
@@ -63,3 +78,5 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+ 
