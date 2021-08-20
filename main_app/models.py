@@ -30,6 +30,9 @@ class JobTitle(models.Model):
     def __str__(self):
         return self.name
 
+class Applicant(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    joblist = models.ManyToManyField(JobTitle)
 
 class Comment(models.Model):
     comment = models.TextField()
