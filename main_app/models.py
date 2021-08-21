@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 from datetime import date
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Tag(models.Model):
@@ -31,8 +33,20 @@ class JobTitle(models.Model):
         return self.name
 
 class Applicant(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     joblist = models.ManyToManyField(JobTitle)
+
+    def __str__(self):
+        return str(self.user)
+
+@receiver(post_save, sender=User)
+def create_applicant(sender, instance, created, **kwargs):
+    if created:
+        Applicant.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_applicant(sender, instance, **kwargs):
+    instance.applicant.save()
 
 class Comment(models.Model):
     comment = models.TextField()

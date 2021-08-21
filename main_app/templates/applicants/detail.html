@@ -1,6 +1,19 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
-{{ applicant }}
+<h1>{{user}}'s Profile</h1>
 
-{% endblock %} 
+{% for jobtitle in user.applicant.joblist.all %}
+<div class="card">
+  <a href="{% url 'detail' jobtitle.id %}">
+    <div class="card-content">
+      <span
+        >{{ jobtitle.company }} - {{ jobtitle.name }}
+        <form action="{% url 'unassoc_job' user.id jobtitle.id %}" method="post">
+          {% csrf_token %} 
+          <button type="submit" class="btn">Remove Job From Profile</button>
+        </form>
+      </span>
+    </div>
+  </a>
+</div>
+{% endfor %} {% endblock %}
