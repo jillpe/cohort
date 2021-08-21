@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Finch Collector</title>
+  <title>Cohort</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -24,7 +24,7 @@
           <li><a href="{% url 'tags_create' %}">Add a Tag</a></li>
           <li><a href="{% url 'tags_index' %}">View Tags</a></li>
           <li><a href="{% url 'jobtitles_create' %}">Add a Job</a></li>
-          <li><a href="{% url 'applicants_detail' %}">Profile</a></li>
+          <li><a href="{% url 'applicants_detail' user.id%}"> View Profile</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
           <li><a href="{% url 'login' %}">Log In</a></li>
