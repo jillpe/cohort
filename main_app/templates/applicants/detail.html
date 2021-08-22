@@ -8,7 +8,7 @@
     <div class="card-content">
       <span
         >{{ jobtitle.company }} - {{ jobtitle.name }}
-        <form action="{% url 'unassoc_job' user.id jobtitle.id %}" method="post">
+        <form action="{% url 'unassoc_job' jobtitle.id %}" method="post">
           {% csrf_token %} 
           <button type="submit" class="btn">Remove Job From Profile</button>
         </form>

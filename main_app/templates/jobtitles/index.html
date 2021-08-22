@@ -8,7 +8,7 @@
     <div class="card-content">
       <span>{{ jobtitle.company }} - {{ jobtitle.name }}
         {% if user.is_authenticated %}
-        <form action="{% url 'assoc_job' user.id jobtitle.id %}" method="post">
+        <form action="{% url 'assoc_job' jobtitle.id %}" method="post">
           {% csrf_token %} {% if jobtitle in user.applicant.joblist.all%}
           <button type="submit" disabled="true" class="btn">
             Job Already Added To Profile

@@ -52,3 +52,9 @@ class Comment(models.Model):
     comment = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     jobtitle = models.ForeignKey(JobTitle, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return str(self.comment)
+
+    def get_absolute_url(self):
+        return reverse("jobs_detail", kwargs={"pk": self.id})

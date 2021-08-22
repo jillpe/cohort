@@ -33,6 +33,7 @@ def add_comment(request, jobtitle_id):
   if form.is_valid():
       new_comment = form.save(commit=False)
       new_comment.jobtitle_id = jobtitle_id
+      new_comment.user = User.objects.get(id=request.user.id)
       new_comment.save()
   return redirect('detail', jobtitle_id=jobtitle_id)
 
@@ -40,19 +41,24 @@ def add_comment(request, jobtitle_id):
 def delete_comment(request, jobtitle_id, comment_id):
     jobtitle = JobTitle.objects.get(id=jobtitle_id)
     comment = Comment.objects.get(jobtitle_id=jobtitle_id, id=comment_id)
-    jobtitle.comment_set.remove(comment)
+    if request.user.id == comment.user.id:
+      jobtitle.comment_set.remove(comment)
     return redirect('detail', jobtitle_id=jobtitle_id)
 
+@login_required
 def update_comment(request, jobtitle_id, comment_id):
     jobtitle = JobTitle.objects.get(id=jobtitle_id)
     comment = Comment.objects.get(id=comment_id)
-    jobtitle.comment_set.remove(comment)
     comment_form = CommentForm(initial=model_to_dict(comment))
-    return render(request, 'jobtitles/detail.html', { 
-    'jobtitle': jobtitle,
-    'comment_id': comment_id,
-    'comment_form': comment_form 
-  })
+    if request.user.id == comment.user.id:
+      jobtitle.comment_set.remove(comment)
+      return render(request, 'jobtitles/detail.html', { 
+      'jobtitle': jobtitle,
+      'comment_id': comment_id,
+      'comment_form': comment_form 
+    })
+    else:
+      return redirect('detail', jobtitle_id=jobtitle_id)
 
 
 class JobTitleCreate(CreateView):
@@ -95,25 +101,25 @@ def unassoc_tag(request, jobtitle_id, tag_id):
     return redirect('detail', jobtitle_id=jobtitle_id)
 
 @login_required
-def applicants_detail(request, user_id):
-  user = User.objects.get(pk=user_id)
+def applicants_detail(request):
+  user = User.objects.get(pk=request.user.id)
   return render(request, 'applicants/detail.html')
 
 
 @login_required
-def assoc_job(request, user_id, jobtitle_id):
-    user = User.objects.get(id=user_id)
+def assoc_job(request, jobtitle_id):
+    user = User.objects.get(id=request.user.id)
     user.applicant.joblist.add(jobtitle_id)
     user.save()
-    return redirect('applicants_detail', user_id=user_id)
+    return redirect('index')
 
 
 @login_required
-def unassoc_job(request, user_id, jobtitle_id):
-    user = User.objects.get(id=user_id)
+def unassoc_job(request, jobtitle_id):
+    user = User.objects.get(id=request.user.id)
     user.applicant.joblist.remove(jobtitle_id)
     user.save()
-    return redirect('applicants_detail', user_id=user_id)
+    return redirect('applicants_detail')
 
 
 def signup(request):
