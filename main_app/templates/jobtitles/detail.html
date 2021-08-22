@@ -22,12 +22,11 @@
     </form>
     <table class="striped">
       <thead>
-        <tr><th>Tags</th><th>Comment</th></tr>
+        <tr><th>Comment</th></tr>
       </thead>
       <tbody>
         {% for comment in jobtitle.comment_set.all %}
           <tr>
-            <td>{{comment.tag}}</td>
             <td>{{comment.comment}}</td>
             <td>
             <a href="{% url 'delete_comment' comment.jobtitle_id comment.id %}">
