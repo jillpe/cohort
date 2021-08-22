@@ -24,7 +24,7 @@
           <li {% if "/tags/create" in request.path %}class="active"{% endif %}><a href="{% url 'tags_create' %}">Add a Tag</a></li>
           <li {% if "/tags/" in request.path and "/tags/create" not in request.path %}class="active"{% endif %}><a href="{% url 'tags_index' %}">View Tags</a></li>
           <li {% if "/jobtitles/create" in request.path %}class="active"{% endif %}><a href="{% url 'jobtitles_create' %}">Add a Job</a></li>
-          <li {% if "/applicants/" in request.path %}class="active"{% endif %}><a href="{% url 'applicants_detail' user.id%}"> View Profile</a></li>
+          <li {% if "/applicants/" in request.path %}class="active"{% endif %}><a href="{% url 'applicants_detail' %}"> View Profile</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
           <li {% if "/login/" in request.path %}class="active"{% endif %}><a href="{% url 'login' %}">Log In</a></li>
