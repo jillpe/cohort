@@ -6,8 +6,8 @@
 <div class="card">
   <a href="{% url 'detail' jobtitle.id %}">
     <div class="card-content">
-      <span
-        >{{ jobtitle.company }} - {{ jobtitle.name }}
+      <span>{{ jobtitle.company }} - {{ jobtitle.name }}
+        {% if user.is_authenticated %}
         <form action="{% url 'assoc_job' user.id jobtitle.id %}" method="post">
           {% csrf_token %} {% if jobtitle in user.applicant.joblist.all%}
           <button type="submit" disabled="true" class="btn">
@@ -17,6 +17,7 @@
           <button type="submit" class="btn">Add Job To Profile</button>
           {%endif%}
         </form>
+        {%endif%}
       </span>
     </div>
   </a>
