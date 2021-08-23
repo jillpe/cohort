@@ -18,6 +18,11 @@
           {%endif%}
         </form>
         {%endif%}
+        {% if jobtitle.tags.count %} {% for tag in jobtitle.tags.all %}
+            <span style="color: {{tag.color}} ">{{ tag.name }}</span>
+            {% endfor %} {% else %}
+            <h5>No Tags</h5>
+            {% endif %}
       </span>
     </div>
   </a>
