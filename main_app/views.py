@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms.models import model_to_dict
 from .models import User, Comment, JobTitle, Tag, Applicant
 from .forms import CommentForm
+from .filter import JobTitleFilter
 
 # Create your views here.
 def home(request):
@@ -15,7 +16,12 @@ def home(request):
 
 def jobtitles_index(request):
   jobtitles = JobTitle.objects.all()
-  return render(request, 'jobtitles/index.html', { 'jobtitles': jobtitles })
+
+  myFilter = JobTitleFilter(request.GET, queryset=jobtitles)
+  jobtitles = myFilter.qs
+
+  return render(request, 'jobtitles/index.html', { 'jobtitles': jobtitles, 'myFilter': myFilter })
+
 
 def jobtitles_detail(request, jobtitle_id):
   jobtitle = JobTitle.objects.get(id=jobtitle_id)
