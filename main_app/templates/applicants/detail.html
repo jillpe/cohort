@@ -8,10 +8,12 @@
     <div class="card-content">
       <span
         >{{ jobtitle.company }} - {{ jobtitle.name }}
+        {%if user.applicant.id == applicant.id%}
         <form action="{% url 'unassoc_job' jobtitle.id applicant.id %}" method="post">
           {% csrf_token %} 
           <button type="submit" class="btn">Remove Job From Profile</button>
         </form>
+        {%endif%}
          {% if jobtitle.tags.count %} {% for tag in jobtitle.tags.all %}
             <span style="color: {{tag.color}} ">{{ tag.name }}</span>
             {% endfor %} {% else %}
