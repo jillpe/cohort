@@ -1,6 +1,17 @@
 {% extends 'base.html' %} {% block content %}
 
 <h1>Job Titles</h1>
+<div class="card">
+  <div class="card-content">
+    <form method="get">
+      {{myFilter.form}} 
+
+      <button type="submit">Search</button>
+
+    </form>
+
+  </div>
+</div>
 
 {% for jobtitle in jobtitles %}
 <div class="card">
