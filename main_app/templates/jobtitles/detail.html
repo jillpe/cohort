@@ -19,8 +19,23 @@
     <form action="{% url 'add_comment' jobtitle.id %}" method="post">
         {% csrf_token %}
         {{ comment_form.as_p }}
-        <input type="submit" class="btn" value="Add Comment">
-    </form>
+        <input type="submit" class="waves-effect waves-light btn" value="Add Comment">
+      </form>
+      {% if user in jobtitle.user.all %}
+      <form action="{% url 'unassoc_user' jobtitle.id %}" method="post">
+        {% csrf_token %}
+          <button type="submit" class="waves-effect waves-light btn">
+            Remove Application
+          </button>        
+        </form>
+      {% else %}
+      <form action="{% url 'assoc_user' jobtitle.id %}" method="post">
+      {% csrf_token %}
+        <button type="submit" class="waves-effect waves-light btn">
+          Mark as Applied
+        </button>        
+      </form>
+        {% endif %}
 {%endif%}
     <table class="striped">
       <thead>
