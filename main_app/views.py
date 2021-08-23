@@ -120,6 +120,18 @@ def unassoc_job(request, jobtitle_id):
     user.applicant.joblist.remove(jobtitle_id)
     user.save()
     return redirect('applicants_detail')
+  
+def assoc_user(request, jobtitle_id):
+  user_id = User.objects.get(id=request.user.id)
+  jobtitle = JobTitle.objects.get(id=jobtitle_id)
+  jobtitle.user.add(user_id)
+  return redirect('detail', jobtitle_id=jobtitle_id)
+
+def unassoc_user(request, jobtitle_id):
+  user_id = User.objects.get(id=request.user.id)
+  jobtitle = JobTitle.objects.get(id=jobtitle_id)
+  jobtitle.user.remove(user_id)
+  return redirect('detail', jobtitle_id=jobtitle_id)
 
 
 def signup(request):
