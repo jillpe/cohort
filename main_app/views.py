@@ -101,10 +101,9 @@ def unassoc_tag(request, jobtitle_id, tag_id):
     return redirect('detail', jobtitle_id=jobtitle_id)
 
 @login_required
-def applicants_detail(request):
-  user = User.objects.get(pk=request.user.id)
-  return render(request, 'applicants/detail.html')
-
+def applicants_detail(request, applicant_id):
+  applicant = Applicant.objects.get(id=applicant_id)
+  return render(request, 'applicants/detail.html', {'applicant':applicant})
 
 @login_required
 def assoc_job(request, jobtitle_id):
@@ -113,13 +112,13 @@ def assoc_job(request, jobtitle_id):
     user.save()
     return redirect('index')
 
-
 @login_required
-def unassoc_job(request, jobtitle_id):
+def unassoc_job(request, jobtitle_id, applicant_id):
     user = User.objects.get(id=request.user.id)
     user.applicant.joblist.remove(jobtitle_id)
     user.save()
-    return redirect('applicants_detail')
+    applicant = Applicant.objects.get(id=applicant_id)
+    return redirect('applicants_detail', applicant_id = applicant_id )
   
 def assoc_user(request, jobtitle_id):
   user_id = User.objects.get(id=request.user.id)
@@ -132,7 +131,6 @@ def unassoc_user(request, jobtitle_id):
   jobtitle = JobTitle.objects.get(id=jobtitle_id)
   jobtitle.user.remove(user_id)
   return redirect('detail', jobtitle_id=jobtitle_id)
-
 
 def signup(request):
   error_message = ''

@@ -38,9 +38,9 @@
         {% endif %}
 {%endif%}
 <div>
-  {% for user in jobtitle.user.all %}
+  {% for username in jobtitle.user.all %}
   <div>
-    {{ user }}
+    <a href = {% url 'applicants_detail' username.applicant.id%}>{{ username }}</a>
   </div>
   {% endfor %}
 </div>

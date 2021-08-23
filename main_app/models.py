@@ -36,6 +36,7 @@ class JobTitle(models.Model):
 class Applicant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     joblist = models.ManyToManyField(JobTitle)
+    is_public = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.user)
