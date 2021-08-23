@@ -37,6 +37,13 @@
       </form>
         {% endif %}
 {%endif%}
+<div>
+  {% for user in jobtitle.user.all %}
+  <div>
+    {{ user }}
+  </div>
+  {% endfor %}
+</div>
     <table class="striped">
       <thead>
         <tr><th>Comment</th></tr>
