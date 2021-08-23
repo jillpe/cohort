@@ -15,11 +15,13 @@
 {% endif %}
 
 <div class="col s6">
+{% if user.is_authenticated %}
     <form action="{% url 'add_comment' jobtitle.id %}" method="post">
         {% csrf_token %}
         {{ comment_form.as_p }}
         <input type="submit" class="btn" value="Add Comment">
     </form>
+{%endif%}
     <table class="striped">
       <thead>
         <tr><th>Comment</th></tr>
@@ -27,7 +29,8 @@
       <tbody>
         {% for comment in jobtitle.comment_set.all %}
           <tr>
-            <td>{{comment.comment}}</td>
+            <td>{{comment.comment}} {% if comment.user != None %} <br>- {{ comment.user }} {%endif%}</td>
+            {% if user ==  comment.user %}
             <td>
             <a href="{% url 'delete_comment' comment.jobtitle_id comment.id %}">
               DELETE
@@ -38,6 +41,7 @@
               UPDATE
               </a>
             </td>
+            {%endif%}
           </tr>
         {% endfor %}
       </tbody>
@@ -66,6 +70,7 @@
     {% endif %}
   </div>
   <!-- Available tags will come after this line -->
+  {% if user.is_authenticated %}
   <div class="col s6">
     <h3>Choose a Tag</h3>
     {% if tags.count %} {% for tag in tags.all %}
@@ -86,6 +91,7 @@
     <h5>{{jobtitle.name}} Already Has All Available Tags</h5>
     {% endif %}
   </div>
+  {%endif%}
 </div>
 
 <script>
