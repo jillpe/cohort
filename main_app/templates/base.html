@@ -21,9 +21,9 @@
         <ul class="right">
           <li {% if "/jobtitles/" in request.path and "/jobtitles/create" not in request.path %}class="active"{% endif %}><a href="{% url 'index' %}">View All Jobs</a></li>
           {% if user.is_authenticated %}
-          <li {% if "/tags/create" in request.path %}class="active"{% endif %}><a href="{% url 'tags_create' %}">Add a Tag</a></li>
-          <li {% if "/tags/" in request.path and "/tags/create" not in request.path %}class="active"{% endif %}><a href="{% url 'tags_index' %}">View Tags</a></li>
           <li {% if "/jobtitles/create" in request.path %}class="active"{% endif %}><a href="{% url 'jobtitles_create' %}">Add a Job</a></li>
+          <li {% if "/tags/" in request.path and "/tags/create" not in request.path %}class="active"{% endif %}><a href="{% url 'tags_index' %}">View Tags</a></li>
+          <li {% if "/tags/create" in request.path %}class="active"{% endif %}><a href="{% url 'tags_create' %}">Add a Tag</a></li>
           <li {% if "/applicants/" in request.path %}class="active"{% endif %}><a href="{% url 'applicants_detail' user.applicant.id%}"> View Profile</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
