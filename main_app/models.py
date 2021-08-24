@@ -10,6 +10,7 @@ from django.dispatch import receiver
 class Tag(models.Model):
     name = models.CharField(max_length=50)
     color = models.CharField(max_length=20)
+    user = models.ManyToManyField(User)
 
     def __str__(self):
         return self.name

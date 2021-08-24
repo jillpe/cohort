@@ -84,7 +84,7 @@ class TagDetail(LoginRequiredMixin, DetailView):
 
 class TagCreate(LoginRequiredMixin, CreateView):
   model = Tag
-  fields = '__all__'
+  fields = ['name', 'color']
 
 class TagUpdate(LoginRequiredMixin, UpdateView):
   model = Tag
@@ -97,6 +97,7 @@ class TagDelete(LoginRequiredMixin, DeleteView):
 @login_required
 def assoc_tag(request, jobtitle_id, tag_id):
     JobTitle.objects.get(id=jobtitle_id).tags.add(tag_id)
+    JobTitle.objects.get()
     return redirect('detail', jobtitle_id=jobtitle_id)
 
 @login_required
@@ -105,6 +106,10 @@ def unassoc_tag(request, jobtitle_id, tag_id):
     jobtitle = JobTitle.objects.get(id=jobtitle_id)
     tag.jobtitle_set.remove(jobtitle)
     return redirect('detail', jobtitle_id=jobtitle_id)
+
+# def assoc_user_tag(request, jobtitle_id, tag_id):
+#     t = JobTitle.objects.annotate('tags')
+#     print(t[0].name)
 
 @login_required
 def applicants_detail(request, applicant_id):
@@ -137,6 +142,14 @@ def unassoc_user(request, jobtitle_id):
   jobtitle = JobTitle.objects.get(id=jobtitle_id)
   jobtitle.user.remove(user_id)
   return redirect('detail', jobtitle_id=jobtitle_id)
+
+def applicants_change_privacy(request, applicant_id):
+  applicant = Applicant.objects.get(id=applicant_id)
+  user = User.objects.get(id=request.user.id)
+  if user.applicant.id == applicant.id:
+    applicant.is_public = not applicant.is_public
+    applicant.save()
+  return redirect('applicants_detail', applicant_id=applicant_id)
 
 def signup(request):
   error_message = ''
