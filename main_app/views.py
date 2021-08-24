@@ -94,7 +94,7 @@ class TagDelete(LoginRequiredMixin, DeleteView):
 @login_required
 def assoc_tag(request, jobtitle_id, tag_id):
     JobTitle.objects.get(id=jobtitle_id).tags.add(tag_id)
-    JobTitle.objects.get()
+    jobtitle = JobTitle.objects.get(id=jobtitle_id)
     return redirect('detail', jobtitle_id=jobtitle_id)
 
 @login_required

@@ -1,8 +1,7 @@
 from django.db import models
-from django.db.models.enums import Choices
 import django_filters
 from .models import JobTitle 
-from django.db import models
+
 
 class JobTitleFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
