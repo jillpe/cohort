@@ -1,6 +1,7 @@
 # **COHORT**
 
-Cohort is a colloraborative job-search tool meant to give GA grads a space to share, talk about and keep track of job oppertunites. 
+Cohort is a collaborative job-search tool meant to give GA grads a space to share, talk about and keep track of job opportunities.
+ 
 
 ## **Screenshots** 
 
