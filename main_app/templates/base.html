@@ -2,17 +2,72 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Cohort</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</head>
-<body>
-  <header class="navbar-fixed">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Cohort</title>
+    {% comment %}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    {% endcomment %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/bulma.css' %}"
+    />
+    {% comment %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% endcomment %}
+  </head>
+  <body>
+    <header>
+      <nav
+        class="navbar is-link"
+        role="navigation"
+        aria-label="main navigation"
+      >
+        <div class="navbar-brand">
+          <a href="" class="navbar-item">COHORT</a>
+          <a
+            role="button"
+            class="navbar-burger burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarBasicExample"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+        <div class="navbar-menu" id="navbarBasicExample">
+          <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link"> Jobs </a>
+              <div class="navbar-dropdown">
+                <a href="" class="navbar-item"> Add a Job </a>
+                <a href="" class="navbar-item"> View all Jobs </a>
+              </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link"> Tags </a>
+              <div class="navbar-dropdown">
+                <a href="" class="navbar-item"> Add a Tag </a>
+                <a href="" class="navbar-item"> View all Tags </a>
+              </div>
+            </div>
+            <div class="navbar-item">
+              <a href="" class="button is-primary"> Log Out</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- 
+  {% comment %} <header class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
         <ul>
@@ -33,13 +88,36 @@
         </ul>
       </div>
     </nav>
-  </header>
-  <main class="container">
-    {% block content %}
-    {% endblock %}
-  </main>
-  <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2021 Cohort &nbsp;</div>
-  </footer>
-</body>
+  </header> {% endcomment %} -->
+    <div
+      class="section is-medium"
+      style="
+        background-color: #000000;
+        opacity: 0.8;
+        background: repeating-linear-gradient(
+          -45deg,
+          #f7455b,
+          #f7455b 20px,
+          #000000 20px,
+          #000000 100px
+        );
+      "
+    >
+      <main class="container is-fluid">{% block content %} {% endblock %}</main>
+    </div>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        All Rights Reserved, &copy; 2021 Cohort &nbsp;
+      </div>
+    </footer>
+  </body>
+  <script>
+    const navButton = document.querySelector(
+      "nav .navbar-brand a.navbar-burger.burger[role='button']"
+    );
+    navButton.addEventListener("click", function (e) {
+      const navMenu = document.getElementById(e.target.dataset.target);
+      navMenu.classList.toggle("is-active");
+    });
+  </script>
 </html>
