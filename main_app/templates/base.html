@@ -18,6 +18,11 @@
       type="text/css"
       href="{% static 'css/bulma.css' %}"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
     {% comment %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     {% endcomment %}
@@ -25,12 +30,13 @@
   <body>
     <header>
       <nav
-        class="navbar is-link"
+        class="navbar is-dark"
+        style="background-color: #464e47"
         role="navigation"
         aria-label="main navigation"
       >
         <div class="navbar-brand">
-          <a href="" class="navbar-item">COHORT</a>
+          <a href=" {% url 'home'%} " class="navbar-item">COHORT</a>
           <a
             role="button"
             class="navbar-burger burger"
@@ -63,17 +69,17 @@
               </div>
             </div>
             <div class="navbar-item">
-              <a href="{% url 'applicants_detail' user.applicant.id%}" class="button is-primary"> View Profile</a>
+              <a href="{% url 'applicants_detail' user.applicant.id%}"> View Profile</a>
             </div>
             <div class="navbar-item">
-              <a href="{% url 'logout' %}" class="button is-primary"> Log Out</a>
+              <a href="{% url 'logout' %}"> Log Out</a>
             </div>
             {%else %}
             <div class="navbar-item">
-              <a href="{% url 'login' %}" class="button is-primary"> Log In</a>
+              <a href="{% url 'login' %}"> Log In</a>
             </div>
             <div class="navbar-item">
-              <a href="{% url 'signup' %}" class="button is-primary"> Sign Up</a>
+              <a href="{% url 'signup' %}" > Sign Up</a>
             </div>
             {% endif %}
           </div>
@@ -105,20 +111,13 @@
   </header> {% endcomment %} -->
     <div
       class="section is-medium"
-      {% comment %} style="
-        background-color: #000000;
-        opacity: 0.8;
-        background: repeating-linear-gradient(
-          -45deg,
-          #f7455b,
-          #f7455b 20px,
-          #000000 20px,
-          #000000 100px
-        );
-      " {% endcomment %}
+       style="
+        background-color: #EBF5DF
+      
+      "
     >
       <main class="container is-fluid">{% block content %} {% endblock %}</main>
-    </div>
+    </div> 
     <footer class="footer">
       <div class="content has-text-centered">
         All Rights Reserved, &copy; 2021 Cohort &nbsp;
