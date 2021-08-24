@@ -48,15 +48,15 @@
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link"> Jobs </a>
               <div class="navbar-dropdown">
-                <a href="" class="navbar-item"> Add a Job </a>
-                <a href="" class="navbar-item"> View all Jobs </a>
+                <a href="{% url 'index' %}" class="navbar-item"> View all Jobs </a>
+                <a href="{% url 'jobtitles_create' %}" class="navbar-item"> Add a Job </a>
               </div>
             </div>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link"> Tags </a>
               <div class="navbar-dropdown">
-                <a href="" class="navbar-item"> Add a Tag </a>
                 <a href="" class="navbar-item"> View all Tags </a>
+                <a href="" class="navbar-item"> Add a Tag </a>
               </div>
             </div>
             <div class="navbar-item">
