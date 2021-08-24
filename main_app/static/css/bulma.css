@@ -5690,7 +5690,7 @@ button.dropdown-item.is-active {
 }
 
 .navbar.is-link {
-  background-color: #485fc7;
+  background-color: #fcfcfc;
   color: #fff;
 }
 
@@ -5703,7 +5703,7 @@ button.dropdown-item.is-active {
 .navbar.is-link .navbar-brand .navbar-link:focus,
 .navbar.is-link .navbar-brand .navbar-link:hover,
 .navbar.is-link .navbar-brand .navbar-link.is-active {
-  background-color: #3a51bb;
+  background-color: #ffffff;
   color: #fff;
 }
 
@@ -5746,7 +5746,7 @@ button.dropdown-item.is-active {
     color: #fff;
   }
   .navbar.is-link .navbar-dropdown a.navbar-item.is-active {
-    background-color: #485fc7;
+    background-color: #00e7eb;
     color: #fff;
   }
 }
