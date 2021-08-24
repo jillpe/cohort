@@ -2,12 +2,9 @@
 
 <h1><a href = "{%url 'applicants_detail' applicant.id%}">{{applicant}}</a>'s Profile</h1>
 
-
-
 {%if user.applicant.id == applicant.id or applicant.is_public %}
 <form action="{% url 'applicants_change_privacy' applicant.id %}" method='post'>
 {% csrf_token %}
-
     <button type='submit' class='btn'>
     {% if applicant.is_public %}
     Make Private

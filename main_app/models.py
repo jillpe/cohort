@@ -28,7 +28,6 @@ class JobTitle(models.Model):
     experience = models.IntegerField(blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
     salary = models.IntegerField(blank=True, null=True)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     user = models.ManyToManyField(User)
     tags = models.ManyToManyField(Tag)
 
