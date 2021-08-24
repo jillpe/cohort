@@ -10,7 +10,6 @@ from .models import User, Comment, JobTitle, Tag, Applicant
 from .forms import CommentForm
 from .filter import JobTitleFilter
 
-# Create your views here.
 def home(request):
     return render(request, 'home.html')
 
@@ -21,7 +20,6 @@ def jobtitles_index(request):
   jobtitles = myFilter.qs
 
   return render(request, 'jobtitles/index.html', { 'jobtitles': jobtitles, 'myFilter': myFilter })
-
 
 def jobtitles_detail(request, jobtitle_id):
   jobtitle = JobTitle.objects.get(id=jobtitle_id)
@@ -66,7 +64,6 @@ def update_comment(request, jobtitle_id, comment_id):
     else:
       return redirect('detail', jobtitle_id=jobtitle_id)
 
-
 class JobTitleCreate(CreateView):
   model = JobTitle
   fields = ['name', 'link', 'company', 'skills', 'initial_description', 'experience', 'location', 'salary']
@@ -106,10 +103,6 @@ def unassoc_tag(request, jobtitle_id, tag_id):
     jobtitle = JobTitle.objects.get(id=jobtitle_id)
     tag.jobtitle_set.remove(jobtitle)
     return redirect('detail', jobtitle_id=jobtitle_id)
-
-# def assoc_user_tag(request, jobtitle_id, tag_id):
-#     t = JobTitle.objects.annotate('tags')
-#     print(t[0].name)
 
 @login_required
 def applicants_detail(request, applicant_id):
