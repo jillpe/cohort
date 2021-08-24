@@ -6,7 +6,6 @@ from .models import JobTitle
 class JobTitleFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
     company = django_filters.CharFilter(lookup_expr='icontains')
-    # tags = Tag.objects.values_list('id', 'name')
     tags__name = django_filters.CharFilter(lookup_expr='icontains')
     salary = django_filters.NumberFilter(lookup_expr='gte')
 
