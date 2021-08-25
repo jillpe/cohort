@@ -5,8 +5,8 @@
 <h5 class = "title is-5" style="display: flex; justify-content: center;"> {{ jobtitle.company }}, &nbsp; {% if jobtitle.location %} {{ jobtitle.location }}, &nbsp; {% endif %} <a style="color: #EDB458" href ="{{ jobtitle.link }}">{{ jobtitle.link }}</a></h5>
 
 <div class="card" style="background-color: #EBF5DF">
-  <div class = "card-content"> Experience (in years): {{ jobtitle.experience }}</div>
-  <div class = "card-content"> Description: {{ jobtitle.initial_description }}</div>
+  <div class = "card-content"> Experience Required (in years): {{ jobtitle.experience }}</div>
+  <div class = "card-content"> Job Description: {{ jobtitle.initial_description }}</div>
   <div class = "card-content"> Skills: {{ jobtitle.skills }}</div>
   <div class = "card-content"> Salary: 
     {% if jobtitle.salary%}
