@@ -40,7 +40,7 @@
 <div>
   {% for username in jobtitle.user.all %}
   <div>
-    <a href = {% url 'applicants_detail' username.applicant.id%}>{{ username }}</a>
+    <a href = {% url 'applicants_detail' username.applicant.id %}>{{ username }}</a>
   </div>
   {% endfor %}
 </div>

@@ -125,6 +125,10 @@ LOGIN_REDIRECT_URL = '/jobtitles/'
 
 LOGOUT_REDIRECT_URL = '/jobtitles/'
 
+# Configure Django App for Heroku
+import django_heroku
+django_heroku.settings(locals())
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
