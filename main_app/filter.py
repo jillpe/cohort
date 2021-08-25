@@ -12,5 +12,4 @@ class JobTitleFilter(django_filters.FilterSet):
     class Meta: 
         model = JobTitle
         fields = ['company','name','tags__name', 'salary']
-
-         
+        
