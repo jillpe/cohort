@@ -1,4 +1,4 @@
-#id_company, #id_name, #id_tags__name, #id_salary, #id_link, #id_skills, #id_initial_description, #id_experience, #id_location {
+#id_company, #id_name, #id_tags__name, #id_salary, #id_link, #id_experience, #id_location {
   -moz-appearance: none;
   -webkit-appearance: none;
   align-items: center;
@@ -24,7 +24,7 @@
   color: #363636;
 }
 
-input#id_username, #id_password{
+input#id_username, #id_password, #id_skills, #id_initial_description {
   -moz-appearance: none;
   -webkit-appearance: none;
   align-items: center;
