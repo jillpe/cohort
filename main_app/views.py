@@ -78,11 +78,11 @@ class TagList(LoginRequiredMixin, ListView):
 
 class TagCreate(LoginRequiredMixin, CreateView):
   model = Tag
-  fields = ['name', 'color']
+  fields = ['name']
 
 class TagUpdate(LoginRequiredMixin, UpdateView):
   model = Tag
-  fields = ['name', 'color']
+  fields = ['name']
 
 class TagDelete(LoginRequiredMixin, DeleteView):
   model = Tag
