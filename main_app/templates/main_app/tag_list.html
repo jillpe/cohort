@@ -1,13 +1,25 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Tag List</h1>
+<h1 class = "title is-1" style="display: flex; justify-content: center;">Tag List</h1>
 
+<div class="columns is-multiline">
 {% for tag in tag_list %}
-<a href="{% url 'tags_detail' tag.id %}">
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title" style="color: {{ tag.color }}">{{ tag.name }}</span>
+<div class="column is-3">
+  <div class="card" style="background-color: #EBF5DF; color: #464E47;">
+    <div class="card-content";>
+      <div style="display: flex; justify-content: flex-end;">
+        <a class="delete is-small" style="background-color: #EDB458;" href="{% url 'tags_delete' tag.id %}"></a>
+      </div>
+      <div style="display: flex; justify-content: center" class="card-title">
+        {{ tag.name }}
+      </div>
+      <br>
+      <div style="display: flex; justify-content: center;">
+        <a class="tag" style="background-color: #EDB458; color: white;" href="{% url 'tags_update' tag.id %}">Edit</a>
+      </div>
     </div>
   </div>
-</a>
-{% endfor %} {% endblock %}
+</div>
+{% endfor %}
+</div>
+{% endblock %}

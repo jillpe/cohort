@@ -76,9 +76,6 @@ class JobTitleUpdate(UpdateView):
 class TagList(LoginRequiredMixin, ListView):
   model = Tag
 
-class TagDetail(LoginRequiredMixin, DetailView):
-  model = Tag
-
 class TagCreate(LoginRequiredMixin, CreateView):
   model = Tag
   fields = ['name', 'color']
