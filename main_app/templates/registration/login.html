@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Log In</h1>
-
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn" value="login">
-    <input type="hidden" name="next" value="{{ next }}"
-</form>
+<div class="card" style="margin: 0 auto; width: 500px; background-color: #EBF5DF;">
+    <div class="title" style="display: flex; justify-content: center; padding-top: 10px;">
+        <h1>Log In</h1>
+    </div>
+    <div class="card-content">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div style="display: flex; justify-content: center; margin: 5px">
+                <input type="submit" style="background-color:#464E47; color: white" class="button is-small" value="Login">
+            </input>
+              </div>
+            <input type="hidden" name="next" value="{{ next }}"
+        </form>
+    </div>
+</div>
 
 {% endblock %}
