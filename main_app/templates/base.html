@@ -69,17 +69,17 @@
               </div>
             </div>
             <div class="navbar-item">
-              <a href="{% url 'applicants_detail' user.applicant.id%}"> View Profile</a>
+              <a href="{% url 'applicants_detail' user.applicant.id%}" style="color: #EDB458"> View Profile</a>
             </div>
             <div class="navbar-item">
-              <a href="{% url 'logout' %}"> Log Out</a>
+              <a href="{% url 'logout' %}" style="color: #EDB458"> Log Out</a>
             </div>
             {%else %}
             <div class="navbar-item">
-              <a href="{% url 'login' %}"> Log In</a>
+              <a href="{% url 'login' %}" style="color: #EDB458"> Log In</a>
             </div>
             <div class="navbar-item">
-              <a href="{% url 'signup' %}" > Sign Up</a>
+              <a href="{% url 'signup' %}" style="color: #EDB458"> Sign Up</a>
             </div>
             {% endif %}
           </div>

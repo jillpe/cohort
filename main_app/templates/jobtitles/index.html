@@ -38,11 +38,13 @@
               {%endif%}
             </form>
             {%endif%}
+            <div class ="tags">
             {% if jobtitle.tags.count %} {% for tag in jobtitle.tags.all %}
                 <div class = "tag is-small" style="background-color: #EDB458; color:white;">{{ tag.name }}</div>
                 {% endfor %} {% else %}
                 <div class = "tag is-small">No Tags</div>
                 {% endif %}
+            </div>
         </div>
       </a>
     </div>

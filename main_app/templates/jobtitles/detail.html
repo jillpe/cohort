@@ -1,123 +1,152 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Title: {{ jobtitle.name }}</h1>
-<h2>Company: {{ jobtitle.company }} </h2>
-<div>Link: <a href ="{{ jobtitle.link }}">{{ jobtitle.link }}</a></div>
-<div>Description: {{ jobtitle.initial_description }}</div>
-<div>Skills: {{ jobtitle.skills }}</div>
-<div>Years: {{ jobtitle.experience }}</div>
-<div>Location: {{ jobtitle.location }}</div>
-<div>Salary: {{ jobtitle.salary }}</div>
+<h1 class = "title is-1" style="display: flex; justify-content: center;"> {{ jobtitle.name }}, {{ jobtitle.company }}</h1>
+<h5 class = "title is-5" style="display: flex; justify-content: center;"> {{ jobtitle.company }}, &nbsp; {% if jobtitle.location %} {{ jobtitle.location }}, &nbsp; {% endif %} <a style="color: #EDB458" href ="{{ jobtitle.link }}">{{ jobtitle.link }}</a></h5>
+
+<div class="card" style="background-color: #EBF5DF">
+  <div class = "card-content"> Experience Required (in years): {{ jobtitle.experience }}</div>
+  <div class = "card-content"> Job Description: {{ jobtitle.initial_description }}</div>
+  <div class = "card-content"> Skills: {{ jobtitle.skills }}</div>
+  <div class = "card-content"> Salary: 
+    {% if jobtitle.salary%}
+    $
+    {%endif%}
+    {{jobtitle.salary}}
+  </div>
+</div>
 
 {% if jobtitle.user == user %}
 <a href="{% url 'jobtitles_update' jobtitle.id %}">Update</a>
 {% endif %}
 
-<div class="col s6">
 {% if user.is_authenticated %}
-    <form action="{% url 'add_comment' jobtitle.id %}" method="post">
+<div class="card" style="background-color: #EBF5DF; margin-top: 30px">
+<div class = "columns">
+<div class="column is-6">
+  <div class = "card-content">
+    <form action="{% url 'add_comment' jobtitle.id %}" method="post" style = "display: flex; flex-direction: column; align-items: center">
         {% csrf_token %}
-        {{ comment_form.as_p }}
-        <input type="submit" class="waves-effect waves-light btn" value="Add Comment">
+        {{ comment_form.as_table }}    
+        <input style="background-color:#464E47; color: white;" type="submit" class="button" value="Add Comment">      
       </form>
-      {% if user in jobtitle.user.all %}
-      <form action="{% url 'unassoc_user' jobtitle.id %}" method="post">
-        {% csrf_token %}
-          <button type="submit" class="waves-effect waves-light btn">
-            Remove Application
-          </button>        
-        </form>
-      {% else %}
-      <form action="{% url 'assoc_user' jobtitle.id %}" method="post">
-      {% csrf_token %}
-        <button type="submit" class="waves-effect waves-light btn">
-          Mark as Applied
-        </button>        
-      </form>
-        {% endif %}
-{%endif%}
-<div>
-  {% for username in jobtitle.user.all %}
-  <div>
-    <a href = {% url 'applicants_detail' username.applicant.id %}>{{ username }}</a>
-  </div>
-  {% endfor %}
+    </div>
 </div>
+
+{%if jobtitle.comment_set.all%}
+<div class="column is-6">
+  <div class = "card-content">
     <table class="striped">
       <thead>
-        <tr><th>Comment</th></tr>
+        <tr><th>Comments</th></tr>
       </thead>
       <tbody>
         {% for comment in jobtitle.comment_set.all %}
           <tr>
-            <td>{{comment.comment}} {% if comment.user != None %} <br>- {{ comment.user }} {%endif%}</td>
+            <td style="padding-bottom:25px">{{comment.comment}} {% if comment.user != None %} <br>- {{ comment.user }} {%endif%}</td>
             {% if user ==  comment.user %}
-            <td>
-            <a href="{% url 'delete_comment' comment.jobtitle_id comment.id %}">
-              DELETE
-              </a>
+            <td style="padding-bottom:25px"> 
+              <form action="{% url 'delete_comment' comment.jobtitle_id comment.id %}" method="post">
+                {% csrf_token %}
+                <input style="background-color:#464E47; color: white;" type="submit" class="button" value="Delete">
+              </form>
             </td>
-            <td>
-            <a href="{% url 'update_comment' comment.jobtitle_id comment.id %}">
-              UPDATE
-              </a>
+            <td style="padding-bottom:25px">
+              <form action="{% url 'update_comment' comment.jobtitle_id comment.id %}" method="post">
+                {% csrf_token %}
+                <input style="background-color:#464E47; color: white;" type="submit" class="button" value="Update">
+              </form>
             </td>
             {%endif%}
           </tr>
         {% endfor %}
       </tbody>
     </table>
+    </div>
+  </div>
+    {% endif %}
   </div>
 </div>
-<hr />
-<div class="row">
-  <div class="col s6">
-    <h3>{{ jobtitle.name }}'s Tags</h3>
-    {% if jobtitle.tags.count %} {% for tag in jobtitle.tags.all %}
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title">
-          A <span style="color: {{ tag.color }} ">{{ tag.name }}</span> Tag
-        </span>
-        <br />
-        <a
-          href="{% url 'unassoc_tag' jobtitle.id tag.id %}"
-          class="btn btn rounded btn-danger"
-          >REMOVE</a>
+
+<div class = "columns" style="margin-top:20px">
+  <div class = "column is-6">
+    <div class = "card" style="background-color: #EBF5DF; padding: 15px;">
+      <div>
+      <h3 class="title is-3"> Users who have applied for this job:</h3>
+      {%if jobtitle.user.all%}
+        {% for username in jobtitle.user.all %}
+        <ul>
+          <li> <a style="color: #EDB458" href = {% url 'applicants_detail' username.applicant.id %}>{{ username }}</a> </li>
+        </ul>
+        {% endfor %}
+        {%else %}
+        No One Has Applied For This Job
+      {% endif %}
+      </div>
+      {% if user in jobtitle.user.all %}
+      <form action="{% url 'unassoc_user' jobtitle.id %}" method="post">
+        {% csrf_token %}
+          <button style="background-color:#464E47; color: white" type="submit" class="button">
+            Remove Application
+          </button>        
+        </form>
+        {% else %}
+          <form action="{% url 'assoc_user' jobtitle.id %}" method="post">
+          {% csrf_token %}
+            <button style="background-color:#464E47; color: white" type="submit" class="button">
+              Mark as Applied
+            </button>        
+          </form>
+            {% endif %}
+    {%endif%}
       </div>
     </div>
-    {% endfor %} {% else %}
-    <h5>No Tags</h5>
+
+<div class = "column is-6">
+<div class="card" style="background-color: #EBF5DF; padding: 15px;">
+  <div class="col s6">
+    <h3 class="title is-3">Tags</h3>
+    <div class="tags">
+    {% if jobtitle.tags.count %} {% for tag in jobtitle.tags.all %}
+          <div class = "tag is-small" style="background-color: #EDB458; color:white;">{{ tag.name }}
+          <form action = "{% url 'unassoc_tag' jobtitle.id tag.id %}" method = "post">
+          {% csrf_token %}
+        <button type= "submit" class="delete is-small">
+          </button>
+          </form>
+          </div>
+          {% endfor %} 
+      </div>
+    {% else %}
+    <div class = "tag is-small">No Tags Have Been Applied</div>
     {% endif %}
   </div>
   
+
   {% if user.is_authenticated %}
   <div class="col s6">
-    <h3>Choose a Tag</h3>
+    <h3>Add a Tag</h3>
+    <div class="tags">
     {% if tags.count %} {% for tag in tags.all %}
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title">
-          <span style="color: {{ tag.color }}">{{ tag.name }}</span>
-        </span>
-      </div>
-      <div class="card-action">
-        <form action="{% url 'assoc_tag' jobtitle.id tag.id %}" method="post">
+      
+        <div class = "tag is-small" style="background-color: #EDB458; color:white;">{{ tag.name }}
+          <form action = "{% url 'assoc_tag' jobtitle.id tag.id %}" method = "post">
           {% csrf_token %}
-          <button type="submit" class="btn">Add</button>
-        </form>
-      </div>
-    </div>
+        <button type= "submit" class="delete is-small" style = "transform:rotate(45deg);">
+          </button>
+          </form>
+          </div>
+      
     {% endfor %} {% else %}
-    <h5>{{jobtitle.name}} Already Has All Available Tags</h5>
-    <form action="{% url 'tags_create' %}" method="post">
-      {% csrf_token %}
-      <button type="submit" class="waves-effect waves-light btn"> Create A New Tag</button>
-    </form>
+    <div class = "tag is-small">No Tags</div>
+      <a href = "{% url 'tags_create' %}" style="background-color:#464E47; color: white; text-decoration:none;" type="submit" class="tag is-small"> Create A New Tag</a>
+    </div>
     {% endif %}
   </div>
   {%endif%}
+</div>
+</div>
+
 </div>
 
 <script>
