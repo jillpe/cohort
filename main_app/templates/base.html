@@ -110,16 +110,17 @@
     </nav>
   </header> {% endcomment %} -->
     <div
-      class="section is-medium"
+      class="is-medium"
        style="
         background-color: #BAD4AA
       
       "
     >
-      <main class="container is-fluid">{% block content %} {% endblock %}</main>
+      <main id="wrapper" class="container is-fluid"><div class= "section">{% block content %} {% endblock %}</div></main>
+    
     </div> 
-    <footer class="footer">
-      <div class="content has-text-centered">
+    <footer class="">
+      <div class="has-text-centered">
         All Rights Reserved, &copy; 2021 Cohort &nbsp;
       </div>
     </footer>

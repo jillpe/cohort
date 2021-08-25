@@ -49,3 +49,6 @@ input#id_username, #id_password{
   border-radius: 4px;
   color: #363636;
 }
+html {
+  height: 100vh;
+}
