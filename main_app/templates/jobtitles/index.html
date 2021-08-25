@@ -1,23 +1,20 @@
 {% extends 'base.html' %} {% block content %}
 
+<div class="menu" style="background-color: #EBF5DF; width: 250px; position: fixed; z-index: 1; top: 0; left: 0; overflow-x: hidden; padding-top: 50px">
+  <div class="card-content">
+  <span class="title" >Filter by:</span>
+  <form method="get" style= "margin-top: 10px; display: flex; flex-direction: column; align-content: center">
+    {{myFilter.form.as_p}} 
+    <br/>
+    <button type="submit" class="button" style="background-color:#464E47; color: white;">Search</button>
+  </form>
+  </div>
+</div>
 
-
-
-<div class="columns is-multiline">
+<div class="columns is-multiline" style="padding-left: 250px">
   
   <div class="column is-full">
     <h1 class = "title is-1">Job Titles</h1>
-    <div class="card" style="background-color: #EBF5DF" style="margin-bottom:15px;">
-      <div class="card-content">
-      <span class="title">Filter by:</span>
-      <form method="get" style: "display: flex; align-content: center">
-        {{myFilter.form.as_p}} 
-        <br/>
-        <button type="submit" class="button" style="background-color:#464E47; color: white;">Search</button>
-      </form>
-
-      </div>
-    </div>
   </div>
 
     {% for jobtitle in jobtitles %}
@@ -42,7 +39,7 @@
             </form>
             {%endif%}
             {% if jobtitle.tags.count %} {% for tag in jobtitle.tags.all %}
-                <div class = "tag is-small" style="background-color: #EDB458; color:white; text-stroke: black">{{ tag.name }}</div>
+                <div class = "tag is-small" style="background-color: #EDB458; color:white;">{{ tag.name }}</div>
                 {% endfor %} {% else %}
                 <div class = "tag is-small">No Tags</div>
                 {% endif %}
