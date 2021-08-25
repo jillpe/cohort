@@ -1,40 +1,55 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Job Titles</h1>
-<div class="card">
-  <div class="card-content">
-  <span class="card-title">Filter by:</span>
-    <form method="get" style = "display: grid; grid-template-columns: auto auto auto auto auto auto auto auto auto; column-gap: 10px; justify-items: center; align-items: center;">
-      {{myFilter.form}} 
-      <button type="submit" class="btn">Search</button>
-    </form>
 
-  </div>
-</div>
 
-{% for jobtitle in jobtitles %}
-<div class="card">
-  <a href="{% url 'detail' jobtitle.id %}">
-    <div class="card-content">
-      <span>{{ jobtitle.company }} - {{ jobtitle.name }}
-        {% if user.is_authenticated %}
-        <form action="{% url 'assoc_job' jobtitle.id %}" method="post">
-          {% csrf_token %} {% if jobtitle in user.applicant.joblist.all%}
-          <button type="submit" disabled="true" class="btn">
-            Job Already Added To Profile
-          </button>
-          {%else%}
-          <button type="submit" class="btn">Add Job To Profile</button>
-          {%endif%}
-        </form>
-        {%endif%}
-        {% if jobtitle.tags.count %} {% for tag in jobtitle.tags.all %}
-            <span style="color: {{tag.color}} ">{{ tag.name }}</span>
-            {% endfor %} {% else %}
-            <h5>No Tags</h5>
-            {% endif %}
-      </span>
+
+<div class="columns is-multiline">
+  
+  <div class="column is-full">
+    <h1 class = "title is-1">Job Titles</h1>
+    <div class="card" style="background-color: #EBF5DF" style="margin-bottom:15px;">
+      <div class="card-content">
+      <span class="title">Filter by:</span>
+      <form method="get" style: "display: flex; align-content: center">
+        {{myFilter.form.as_p}} 
+        <br/>
+        <button type="submit" class="button" style="background-color:#464E47; color: white;">Search</button>
+      </form>
+
+      </div>
     </div>
-  </a>
+  </div>
+
+    {% for jobtitle in jobtitles %}
+    <div class = "column is-3">
+    <div class="card" style="background-color: #EBF5DF">
+      <a href="{% url 'detail' jobtitle.id %}">
+        <div class="card-content">
+          <span class="title">{{ jobtitle.company }} - {{ jobtitle.name }}</span>
+            {% if user.is_authenticated %}
+            <form action="{% url 'assoc_job' jobtitle.id %}" method="post">
+              {% csrf_token %} {% if jobtitle in user.applicant.joblist.all%}
+              <div style="display: flex; justify-content: center; margin: 5px">
+                <button type="submit" style="background-color:#464E47; color: white" disabled="true" class="button is-small">
+                  Job Already Added To Profile
+                </button>
+              </div>
+              {%else%}
+              <div style="display: flex; justify-content: center; margin: 5px">
+              <button type="submit" style="background-color:#464E47; color: white" class="button is-small" >Add Job To Profile</button>
+            </div>
+              {%endif%}
+            </form>
+            {%endif%}
+            {% if jobtitle.tags.count %} {% for tag in jobtitle.tags.all %}
+                <div class = "tag is-small" style="background-color: #EDB458; color:white; text-stroke: black">{{ tag.name }}</div>
+                {% endfor %} {% else %}
+                <div class = "tag is-small">No Tags</div>
+                {% endif %}
+        </div>
+      </a>
+    </div>
+  </div>
+    {% endfor %}
 </div>
-{% endfor %} {% endblock %}
+ {% endblock %}

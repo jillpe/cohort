@@ -1,1 +1,1 @@
-web: gunicorn cohort.wsgi 
+web: gunicorn cohort.wsgi
