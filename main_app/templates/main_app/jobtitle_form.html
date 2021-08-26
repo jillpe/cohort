@@ -1,18 +1,18 @@
-{% extends 'base.html' %} {% block content %}
-<div>
-{% if object %}
-    <h1 class="title is-1" style="display: flex; justify-content: center">Edit <span class="teal-text">{{object.name}}</span></h1>
-{% else %}
-    <h1 class="title is-1" style="display: flex; justify-content: center">Add Job</h1>
-{% endif %}
-
-<form action="" method="POST" >
-    {% csrf_token %}
-    <table>
-        {{ form.as_p }}
-    </table>
-    <br>
-    <input style="background-color: #464E47; color: white;" type="submit" value="Submit!" class="button">
-</form>
-</div>
+{% extends 'base.html' %} 
+{% block content %}
+    <div>
+        {% if object %}
+            <h1 class="title is-1" style="display: flex; justify-content: center">Edit <span class="teal-text">{{object.name}}</span></h1>
+        {% else %}
+            <h1 class="title is-1" style="display: flex; justify-content: center">Add Job</h1>
+        {% endif %}
+        <form action="" method="POST" >
+            {% csrf_token %}
+            <table>
+                {{ form.as_p }}
+            </table>
+            <br>
+            <input style="background-color: #464E47; color: white;" type="submit" value="Submit!" class="button">
+        </form>
+    </div>
 {% endblock %}

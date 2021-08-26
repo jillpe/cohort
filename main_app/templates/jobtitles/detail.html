@@ -43,7 +43,7 @@
       <tbody>
         {% for comment in jobtitle.comment_set.all %}
           <tr>
-            <td style="padding-bottom:25px">{{comment.comment}} {% if comment.user != None %} <br>- <a style="color: #EDB458" href = {% url 'applicants_detail' user.applicant.id %}>{{ comment.user }} </a>{%endif%}</td>
+            <td style="padding-bottom:25px">{{comment.comment}} {% if comment.user != None %} <br>- <a style="color: #EDB458" href = {% url 'applicants_detail' user.applicant.id %}>@{{ comment.user }} </a>{%endif%}</td>
             {% if user ==  comment.user %}
             <td style="padding-bottom:25px"> 
               <form action="{% url 'delete_comment' comment.jobtitle_id comment.id %}" method="post">
@@ -76,7 +76,7 @@
       {%if jobtitle.user.all%}
         {% for username in jobtitle.user.all %}
         <ul>
-          <li> <a style="color: #EDB458" href = {% url 'applicants_detail' username.applicant.id %}>{{ username }}</a> </li>
+          <li> <a style="color: #EDB458" href = {% url 'applicants_detail' username.applicant.id %}>@{{ username }}</a> </li>
         </ul>
         {% endfor %}
         {%else %}
