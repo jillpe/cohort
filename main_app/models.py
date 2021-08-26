@@ -15,14 +15,13 @@ class Tag(models.Model):
     
     def get_absolute_url(self):
         return reverse("tags_index")
-    
 
 class JobTitle(models.Model):
     name = models.CharField(max_length=300)
     link = models.URLField(max_length=500)
     company = models.CharField(max_length=300)
-    skills = models.TextField(blank=True, null=True)
-    initial_description = models.TextField(blank=True, null=True)
+    skills = models.CharField(max_length=1000, blank=True, null=True)
+    initial_description = models.CharField(max_length=1000, blank=True, null=True)
     experience = models.IntegerField(blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
     salary = models.IntegerField(blank=True, null=True)
