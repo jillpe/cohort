@@ -1,54 +1,55 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
-<div class="menu" style="background-color: #EBF5DF; width: 250px; position: fixed; z-index: 1; top: 0; left: 0; overflow-x: hidden; padding-top: 50px">
-  <div class="card-content">
-  <span class="title" >Filter by:</span>
-  <form method="get" style= "margin-top: 10px; display: flex; flex-direction: column; align-content: center">
-    {{myFilter.form.as_p}} 
-    <br/>
-    <button type="submit" class="button" style="background-color:#464E47; color: white;">Search</button>
-  </form>
-  </div>
-</div>
-
-<div class="columns is-multiline" style="padding-left: 250px">
-  
-  <div class="column is-full">
-    <h1 class = "title is-1">Job Titles</h1>
-  </div>
-
-    {% for jobtitle in jobtitles %}
-    <div class = "column is-3">
-    <div class="card" style="background-color: #EBF5DF">
-      <a href="{% url 'detail' jobtitle.id %}">
-        <div class="card-content">
-          <span class="title">{{ jobtitle.company }} - {{ jobtitle.name }}</span>
-            {% if user.is_authenticated %}
-            <form action="{% url 'assoc_job' jobtitle.id %}" method="post">
-              {% csrf_token %} {% if jobtitle in user.applicant.joblist.all%}
-              <div style="display: flex; justify-content: center; margin: 5px">
-                <button type="submit" style="background-color:#464E47; color: white" disabled="true" class="button is-small">
-                  Job Already Added To Profile
-                </button>
-              </div>
-              {%else%}
-              <div style="display: flex; justify-content: center; margin: 5px">
-              <button type="submit" style="background-color:#464E47; color: white" class="button is-small" >Add Job To Profile</button>
-            </div>
-              {%endif%}
-            </form>
-            {%endif%}
-            <div class ="tags">
-            {% if jobtitle.tags.count %} {% for tag in jobtitle.tags.all %}
-                <div class = "tag is-small" style="background-color: #EDB458; color:white;">{{ tag.name }}</div>
-                {% endfor %} {% else %}
-                <div class = "tag is-small">No Tags</div>
-                {% endif %}
-            </div>
-        </div>
-      </a>
+  <div class="menu" style="background-color: #EBF5DF; width: 250px; position: fixed; z-index: 1; top: 0; left: 0; overflow-x: hidden; padding-top: 50px">
+    <div class="card-content">
+      <span class="title" >Filter by:</span>
+      <form method="get" style= "margin-top: 10px; display: flex; flex-direction: column; align-content: center">
+        {{myFilter.form.as_p}} 
+        <br/>
+        <button type="submit" class="button" style="background-color:#464E47; color: white;">Search</button>
+      </form>
     </div>
   </div>
+  <div class="columns is-multiline" style="padding-left: 250px">
+    <div class="column is-full">
+      <h1 class = "title is-1">Job Titles</h1>
+    </div>
+    {% for jobtitle in jobtitles %}
+      <div class = "column is-3">
+        <div class="card" style="background-color: #EBF5DF">
+          <a href="{% url 'detail' jobtitle.id %}">
+            <div class="card-content">
+              <span class="title">{{ jobtitle.company }} - {{ jobtitle.name }}</span>
+              {% if user.is_authenticated %}
+                <form action="{% url 'assoc_job' jobtitle.id %}" method="post">
+                  {% csrf_token %} 
+                  {% if jobtitle in user.applicant.joblist.all%}
+                    <div style="display: flex; justify-content: center; margin: 5px">
+                      <button type="submit" style="background-color:#464E47; color: white" disabled="true" class="button is-small">
+                        Job Already Added To Profile
+                      </button>
+                    </div>
+                  {%else%}
+                    <div style="display: flex; justify-content: center; margin: 5px">
+                      <button type="submit" style="background-color:#464E47; color: white" class="button is-small" >Add Job To Profile</button>
+                    </div>
+                  {%endif%}
+                </form>
+              {%endif%}
+              <div class ="tags">
+                {% if jobtitle.tags.count %} 
+                  {% for tag in jobtitle.tags.all %}
+                    <div class = "tag is-small" style="background-color: #EDB458; color:white;">{{ tag.name }}</div>
+                  {% endfor %} 
+                {% else %}
+                  <div class = "tag is-small">No Tags</div>
+                {% endif %}
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
     {% endfor %}
-</div>
+  </div>
  {% endblock %}
