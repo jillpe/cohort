@@ -2,7 +2,7 @@
 {% block content %}
 
 <h1 class = "title is-1" style="display: flex; justify-content: center;"> {{ jobtitle.name }}, {{ jobtitle.company }}</h1>
-<h5 class = "title is-5" style="display: flex; justify-content: center;"> {{ jobtitle.company }}, &nbsp; {% if jobtitle.location %} {{ jobtitle.location }}, &nbsp; {% endif %} <a style="color: #EDB458" href ="{{ jobtitle.link }}">{{ jobtitle.link }}</a></h5>
+<h5 class = "title is-5" style="display: flex; justify-content: center;"> {{ jobtitle.company }}, &nbsp; {% if jobtitle.location %} {{ jobtitle.location }}, &nbsp; {% endif %} <a style="color: #EDB458" href ="{{ jobtitle.link }}"> Visit the Job Application</a></h5>
 
 <div class="card" style="background-color: #EBF5DF">
   <div class = "card-content"> <strong>Experience Required (in years): </strong>{{ jobtitle.experience }}</div>
@@ -136,6 +136,7 @@
           </button>
           </form>
           </div>
+          <a href = "{% url 'tags_create' %}" style="background-color:#464E47; color: white; text-decoration:none;" type="submit" class="tag is-small"> Create A New Tag</a>
       
     {% endfor %} {% else %}
     <div class = "tag is-small">No Tags</div>
