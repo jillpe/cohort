@@ -24,7 +24,7 @@ Add a Tag
 Cohort was built using the following technologies: *Django, Python, PostgreSQL, HTML, Django HTML, CSS and Bulma.* 
 
 ## **Getting Started** 
-[The App on Heroku](https://docs.google.com/presentation/d/1cZq-sKF0o0DAxiffNsZ_IRmGtbfi96wXleVG-a7hLx0/edit?usp=sharing)
+[The App on Heroku](https://cohort-project.herokuapp.com/)
 
 [Trello Board](https://trello.com/b/czpvXC5J/project-4)
 
