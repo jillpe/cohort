@@ -23,12 +23,10 @@ Add a Filter
 
 Cohort was built using the following technologies: *Django, Python, HTML, Django HTML and Bulma.* 
 
-
 ## **Getting Started** 
 Heroku Link: https://docs.google.com/presentation/d/1cZq-sKF0o0DAxiffNsZ_IRmGtbfi96wXleVG-a7hLx0/edit?usp=sharing
 
 Trello Board: https://trello.com/b/czpvXC5J/project-4
-
 
 Pitch Deck: https://docs.google.com/presentation/d/1cZq-sKF0o0DAxiffNsZ_IRmGtbfi96wXleVG-a7hLx0/edit#slide=id.ge9f665912c_0_228
 
