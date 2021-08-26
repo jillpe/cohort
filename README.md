@@ -7,7 +7,7 @@ Landing Page
 
 <img src="https://i.imgur.com/NDtyCL9.png">
 
-Filter Jobs
+View All Jobs and Filter Jobs
 
 <img src="https://i.imgur.com/3lxUvxb.png">
 
@@ -15,7 +15,7 @@ Add a Job
 
 <img src="https://i.imgur.com/UF76GlT.png">
 
-Add a Filter
+Add a Tag
 
 <img src="https://i.imgur.com/qKGVNHX.png">
 
