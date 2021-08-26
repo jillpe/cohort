@@ -1,18 +1,24 @@
 {% extends 'base.html' %} 
 {% block content %}
-    <div>
+    <div class="card" style="margin: 0 auto; width: 500px; background-color: #EBF5DF;">
+        <div class="title" style="display: flex; justify-content: center; padding-top: 10px;">
         {% if object %}
             <h1 class="title is-1" style="display: flex; justify-content: center">Edit <span class="teal-text">{{object.name}}</span></h1>
         {% else %}
             <h1 class="title is-1" style="display: flex; justify-content: center">Add Job</h1>
         {% endif %}
+        </div>
+        <div class="card-content">
         <form action="" method="POST" >
             {% csrf_token %}
             <table>
                 {{ form.as_p }}
             </table>
             <br>
-            <input style="background-color: #464E47; color: white;" type="submit" value="Submit!" class="button">
+            <div style="display: flex; justify-content: center; margin: 5px">
+            <input style="background-color: #464E47; color: white" type="submit" value="Submit!" class="button is-small">
+            </div>
         </form>
+        </div>
     </div>
 {% endblock %}
