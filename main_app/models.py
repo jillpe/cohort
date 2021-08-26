@@ -14,7 +14,7 @@ class Tag(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse("tags_detail", kwargs={"pk": self.id})
+        return reverse("tags_index")
     
 
 class JobTitle(models.Model):
