@@ -21,7 +21,7 @@ Add a Tag
 
 ## **Technologies Used** 
 
-Cohort was built using the following technologies: *Django, Python, HTML, Django HTML and Bulma.* 
+Cohort was built using the following technologies: *Django, Python, PostgreSQL, HTML, Django HTML, CSS and Bulma.* 
 
 ## **Getting Started** 
 Heroku Link: https://docs.google.com/presentation/d/1cZq-sKF0o0DAxiffNsZ_IRmGtbfi96wXleVG-a7hLx0/edit?usp=sharing
