@@ -54,11 +54,17 @@ html {
   height: 100vh;
 }
 #filter{
-  background-color: #EBF5DF; width: 250px; position: fixed; z-index: 1; top: 0; left: 0; overflow-x: hidden; padding-top: 50px
+  background-color: #EBF5DF; 
+  width: 250px; 
+  position: fixed; 
+  left: 0; 
+  overflow-x: hidden; 
 }
+
 #job_index{
   padding-left: 250px;
 }
+
 @media only screen 
 and (min-device-width: 375px)
 and (max-device-width: 812px){
@@ -71,7 +77,6 @@ and (max-device-width: 812px){
   position: relative;
   }
 #job_index{
-  padding-left: 0;
-  
+  padding-left: 0;  
   }
 }
