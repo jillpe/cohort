@@ -1,4 +1,4 @@
-#id_company, #id_name, #id_tags__name, #id_salary, #id_link, #id_experience, #id_location, #id_password1, #id_password2 {
+#id_company, #id_name, #id_tags__name, #id_salary, #id_link, #id_experience, #id_location, #id_password1, #id_password2, #id_comment {
   -moz-appearance: none;
   -webkit-appearance: none;
   align-items: center;
@@ -22,6 +22,7 @@
   border-color: #dbdbdb;
   border-radius: 4px;
   color: #363636;
+  width: 80%;
 }
 
 input#id_username, #id_password, #id_skills, #id_initial_description {
@@ -51,4 +52,26 @@ input#id_username, #id_password, #id_skills, #id_initial_description {
 }
 html {
   height: 100vh;
+}
+#filter{
+  background-color: #EBF5DF; width: 250px; position: fixed; z-index: 1; top: 0; left: 0; overflow-x: hidden; padding-top: 50px
+}
+#job_index{
+  padding-left: 250px;
+}
+@media only screen 
+and (min-device-width: 375px)
+and (max-device-width: 812px){
+#filter{
+  background-color: #EBF5DF;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+  color: #4a4a4a;
+  max-width: 100%;
+  position: relative;
+  }
+#job_index{
+  padding-left: 0;
+  
+  }
 }

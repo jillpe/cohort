@@ -1,7 +1,11 @@
 {% extends 'base.html' %} 
 {% block content %}
 
-  <div class="menu" style="background-color: #EBF5DF; width: 250px; position: fixed; z-index: 1; top: 0; left: 0; overflow-x: hidden; padding-top: 50px">
+  <div id="job_index" class="columns is-multiline" style="">
+    <div class="column is-full">
+      <h1 class = "title is-1">Job Titles</h1>
+    </div>
+  <div id="filter" class="menu" style="">
     <div class="card-content">
       <span class="title" >Filter by:</span>
       <form method="get" style= "margin-top: 10px; display: flex; flex-direction: column; align-content: center">
@@ -11,10 +15,6 @@
       </form>
     </div>
   </div>
-  <div class="columns is-multiline" style="padding-left: 250px">
-    <div class="column is-full">
-      <h1 class = "title is-1">Job Titles</h1>
-    </div>
     {% for jobtitle in jobtitles %}
       <div class = "column is-3">
         <div class="card" style="background-color: #EBF5DF">
