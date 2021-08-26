@@ -21,7 +21,7 @@ Add a Filter
 
 ## **Technologies Used** 
 
-Cohort was built using the following techstack: *Django, Python, HTML, Django HTML and Bulma.* 
+Cohort was built using the following technologies: *Django, Python, HTML, Django HTML and Bulma.* 
 
 
 ## **Getting Started** 
@@ -34,4 +34,4 @@ Pitch Deck: https://docs.google.com/presentation/d/1cZq-sKF0o0DAxiffNsZ_IRmGtbfi
 
 ## **Icebox Features**
 
-We plan on making the app mobile friendly 
+We plan on making the app more mobile friendly 
