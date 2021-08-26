@@ -1,6 +1,6 @@
 {% extends 'base.html' %} 
 {% block content %}
-  <h2 class="title is-1" style= "display: flex; justify-content: center;">
+  <h2 class="title is-1" style= "display: flex; justify-content: center; white-space: nowrap;">
     <a href = "{%url 'applicants_detail' applicant.id%}" style="color: #EDB458;">{{applicant}}'s &nbsp; </a> Profile
   </h2>
   {%if user.applicant.id == applicant.id or applicant.is_public %}

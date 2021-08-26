@@ -3,7 +3,7 @@
 
   <div id="job_index" class="columns is-multiline" style="">
     <div class="column is-full">
-      <h1 class = "title is-1">Job Titles</h1>
+      <h1 class = "title is-1">List of Jobs</h1>
     </div>
   <div id="filter" class="menu" style="">
     <div class="card-content">
@@ -17,24 +17,22 @@
   </div>
     {% for jobtitle in jobtitles %}
       <div class = "column is-3">
-        <div class="card" style="background-color: #EBF5DF">
+        <div class="card" style="background-color: #EBF5DF; ">
           <a href="{% url 'detail' jobtitle.id %}">
             <div class="card-content">
-              <span class="title">{{ jobtitle.company }} - {{ jobtitle.name }}</span>
+              <span style="word-break: normal; text-overflow: ellipsis" class="title">{{ jobtitle.company }} - {{ jobtitle.name }}</span>
               {% if user.is_authenticated %}
                 <form action="{% url 'assoc_job' jobtitle.id %}" method="post">
                   {% csrf_token %} 
-                  {% if jobtitle in user.applicant.joblist.all%}
-                    <div style="display: flex; justify-content: center; margin: 5px">
-                      <button type="submit" style="background-color:#464E47; color: white" disabled="true" class="button is-small">
+                  <div style="display: flex; justify-content: center; margin: 5px;  overflow-x: hidden;">
+                    {% if jobtitle in user.applicant.joblist.all%}
+                      <button type="submit" style="background-color:#464E47; color: white;" disabled="true" class="button is-small">
                         Job Already Added To Profile
                       </button>
-                    </div>
-                  {%else%}
-                    <div style="display: flex; justify-content: center; margin: 5px">
-                      <button type="submit" style="background-color:#464E47; color: white" class="button is-small" >Add Job To Profile</button>
-                    </div>
-                  {%endif%}
+                    {%else%}
+                      <button type="submit" style="background-color:#464E47; color: white" class="button is-small">Add Job To Profile</button>
+                    {%endif%}
+                  </div>
                 </form>
               {%endif%}
               <div class ="tags">
