@@ -24,11 +24,11 @@ Add a Tag
 Cohort was built using the following technologies: *Django, Python, PostgreSQL, HTML, Django HTML, CSS and Bulma.* 
 
 ## **Getting Started** 
-Heroku Link: https://docs.google.com/presentation/d/1cZq-sKF0o0DAxiffNsZ_IRmGtbfi96wXleVG-a7hLx0/edit?usp=sharing
+[The App on Heroku](https://docs.google.com/presentation/d/1cZq-sKF0o0DAxiffNsZ_IRmGtbfi96wXleVG-a7hLx0/edit?usp=sharing)
 
-Trello Board: https://trello.com/b/czpvXC5J/project-4
+[Trello Board](https://trello.com/b/czpvXC5J/project-4)
 
-Pitch Deck: https://docs.google.com/presentation/d/1cZq-sKF0o0DAxiffNsZ_IRmGtbfi96wXleVG-a7hLx0/edit#slide=id.ge9f665912c_0_228
+[Pitch Deck](https://docs.google.com/presentation/d/1cZq-sKF0o0DAxiffNsZ_IRmGtbfi96wXleVG-a7hLx0/edit#slide=id.ge9f665912c_0_228)
 
 ## **Icebox Features**
 
