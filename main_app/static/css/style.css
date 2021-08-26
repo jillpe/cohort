@@ -1,4 +1,4 @@
-#id_company, #id_name, #id_tags__name, #id_salary, #id_link, #id_experience, #id_location {
+#id_company, #id_name, #id_tags__name, #id_salary, #id_link, #id_experience, #id_location, #id_password1, #id_password2 {
   -moz-appearance: none;
   -webkit-appearance: none;
   align-items: center;
