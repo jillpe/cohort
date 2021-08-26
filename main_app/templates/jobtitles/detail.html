@@ -48,13 +48,13 @@
             <td style="padding-bottom:25px"> 
               <form action="{% url 'delete_comment' comment.jobtitle_id comment.id %}" method="post">
                 {% csrf_token %}
-                <input style="background-color:#464E47; color: white;" type="submit" class="button" value="Delete">
+                <input style="background-color:#464E47; color: white;" type="submit" class="button is-small" value="Delete">
               </form>
             </td>
             <td style="padding-bottom:25px">
               <form action="{% url 'update_comment' comment.jobtitle_id comment.id %}" method="post">
                 {% csrf_token %}
-                <input style="background-color:#464E47; color: white;" type="submit" class="button" value="Update">
+                <input style="background-color:#464E47; color: white;" type="submit" class="button is-small" value="Update">
               </form>
             </td>
             {%endif%}
