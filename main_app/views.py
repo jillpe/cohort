@@ -67,10 +67,12 @@ def update_comment(request, jobtitle_id, comment_id):
   comment_form = CommentForm(initial=model_to_dict(comment))
   if request.user.id == comment.user.id:
     jobtitle.comment_set.remove(comment)
+    job_title_form = JobTitleForm()
     return render(request, 'jobtitles/detail.html', { 
     'jobtitle': jobtitle,
     'comment_id': comment_id,
-    'comment_form': comment_form 
+    'comment_form': comment_form,
+    'job_title_form': job_title_form
   })
   else:
     return redirect('detail', jobtitle_id=jobtitle_id)
@@ -159,7 +161,6 @@ def applicants_change_privacy(request, applicant_id):
 def applicants_add_info(request, applicant_id):
   applicant = Applicant.objects.get(id=applicant_id)
   user = User.objects.get(id=request.user.id)
-  
 
 def signup(request):
   error_message = ''
