@@ -24,7 +24,7 @@
       {%if applicant.user.jobtitle_set%}
         {% for jobtitle in applicant.user.jobtitle_set.all%}
           <div class="column is-3">
-            <div class="card" style="background-color: #EBF5DF">
+            <div class="card" style="height: 200px; background-color: #EBF5DF;">
               <a href="{% url 'detail' jobtitle.id %}">
                 <div class="card-content">
                   <span class="title">{{ jobtitle.company }} - {{ jobtitle.name }}</span>
@@ -51,7 +51,7 @@
       </div>
       {% for jobtitle in applicant.joblist.all %}
         <div class="column is-3">
-          <div class="card" style="background-color: #EBF5DF">
+          <div class="card" style="background-color: #EBF5DF; height: 200px">
             <a href="{% url 'detail' jobtitle.id %}">
               <div class="card-content">
                 <span class="title">{{ jobtitle.company }} - {{ jobtitle.name }}</span>
