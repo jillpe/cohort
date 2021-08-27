@@ -3,7 +3,7 @@
   <h2 class="title is-1" style= "display: flex; justify-content: center; white-space: nowrap;">
     <a href = "{%url 'applicants_detail' applicant.id%}" style="color: #EDB458;">{{applicant}}'s &nbsp; </a> Profile
   </h2>
-  {%if user.applicant.id == applicant.id or applicant.is_public %}
+  {%if user.applicant.id == applicant.id %}
     <form action="{% url 'applicants_change_privacy' applicant.id %}" method='post' style="display: flex; justify-content: center;">
       {% csrf_token %}
       <button type='submit' class="button" style="background-color:#464E47; color: white; display: flex; justify-content: center;">
@@ -15,6 +15,8 @@
       </button>
     </form>
     <br>
+  {% endif %}
+  {%if user.applicant.id == applicant.id or applicant.is_public %}
     <div class="columns is-multiline">
       <div class="column is-full">
         <h1 class="title is-3">Jobs {{applicant}} has applied to</h1>
@@ -75,6 +77,6 @@
       {% endfor %} 
     </div>
   {% else %}
-    <h1>This Profile is Private</h1>
+    <h1 class="title is-1">This Profile is Private</h1>
   {% endif %}
 {% endblock %}
