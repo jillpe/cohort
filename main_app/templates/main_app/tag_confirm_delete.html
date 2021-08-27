@@ -6,11 +6,18 @@
       <span class="teal-text">{{ object.name }}</span>?
     </h3>
     <br/>
-    <form action="" method="POST" style="display: flex; align-items: center;">
-      {% csrf_token %}
-      <input style="background-color:#464E47; color: white;" type="submit" value="Yes - Delete!" class="button" />
-      &nbsp;
-      <a style="color: #EDB458" href="{% url 'tags_index' %}">Cancel</a>
-    </form>
+    <div style="display: flex; justify-content: space-between">
+      <form action="" method="POST" style="display: flex; align-items: center;">
+        {% csrf_token %}
+        <input style="background-color:#464E47; color: white;" type="submit" value="Yes - Delete!" class="button" />
+      </form>
+      <div>
+        &nbsp;
+      </div>
+      <form action="{% url 'tags_index' %}" method="GET" style="display: flex; align-items: center;">
+        {% csrf_token %}
+        <input style="background-color: #EDB458; color: white;" type="submit" value="Cancel" class="button" />
+      </form>
+    </div>
   </div>
 {% endblock %}
