@@ -35,6 +35,12 @@ class Applicant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     joblist = models.ManyToManyField(JobTitle)
     is_public = models.BooleanField(default=True)
+    first_name = models.CharField(max_length=35)
+    last_name = models.CharField(max_length=35)
+    pronoun = models.CharField(max_length=50)
+    about_me = models.TextField(max_length=500)
+    state_location = models.CharField(max_length=100)
+    city_location = models.CharField(max_length=100)
 
     def __str__(self):
         return str(self.user)

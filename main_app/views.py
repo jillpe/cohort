@@ -143,6 +143,11 @@ def applicants_change_privacy(request, applicant_id):
     applicant.save()
   return redirect('applicants_detail', applicant_id=applicant_id)
 
+def applicants_add_info(request, applicant_id):
+  applicant = Applicant.objects.get(id=applicant_id)
+  user = User.objects.get(id=request.user.id)
+  
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
