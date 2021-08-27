@@ -39,8 +39,7 @@ def create_new_job(request):
   if form.is_valid():
     new_job = form.save(commit=False)
     new_job.save()
-    # job_title = JobTitle.objects.get(id=new_job.id)
-    # job_title.user = request.user
+    new_job.user.set([request.user])
   return redirect('index')
 
 @login_required
