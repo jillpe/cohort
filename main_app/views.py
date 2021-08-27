@@ -39,8 +39,7 @@ def create_new_job(request):
   if form.is_valid():
     new_job = form.save(commit=False)
     new_job.save()
-    # job_title = JobTitle.objects.get(id=new_job.id)
-    # job_title.user = request.user
+    new_job.user.set([request.user])
   return redirect('index')
 
 @login_required
@@ -68,10 +67,12 @@ def update_comment(request, jobtitle_id, comment_id):
   comment_form = CommentForm(initial=model_to_dict(comment))
   if request.user.id == comment.user.id:
     jobtitle.comment_set.remove(comment)
+    job_title_form = JobTitleForm()
     return render(request, 'jobtitles/detail.html', { 
     'jobtitle': jobtitle,
     'comment_id': comment_id,
-    'comment_form': comment_form 
+    'comment_form': comment_form,
+    'job_title_form': job_title_form
   })
   else:
     return redirect('detail', jobtitle_id=jobtitle_id)
@@ -165,6 +166,7 @@ def applicants_add_info(request, applicant_id):
     new_info.save()
   return redirect('applicant_detail')
   
+
 
 def signup(request):
   error_message = ''
