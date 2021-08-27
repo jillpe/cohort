@@ -35,9 +35,9 @@
         {%if jobtitle.comment_set.all%}
           <div class="column is-6">
             <div class = "card-content">
-              <table class="striped">
+              <table class="table is-fullwidth" style="background-color: transparent">
                 <thead>
-                  <tr><th>Comments</th></tr>
+                  <tr><th class = "title is-5">Comments</th></tr>
                 </thead>
                 <tbody>
                   {% for comment in jobtitle.comment_set.all %}

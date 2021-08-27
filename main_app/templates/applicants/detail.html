@@ -17,6 +17,34 @@
     <br>
     <div class="columns is-multiline">
       <div class="column is-full">
+        <h1 class="title is-3">Jobs {{applicant}} has applied to</h1>
+      </div>
+      {%if applicant.user.jobtitle_set%}
+        {% for jobtitle in applicant.user.jobtitle_set.all%}
+          <div class="column is-3">
+            <div class="card" style="background-color: #EBF5DF">
+              <a href="{% url 'detail' jobtitle.id %}">
+                <div class="card-content">
+                  <span class="title">{{ jobtitle.company }} - {{ jobtitle.name }}</span>
+                    {%if user.applicant.id == applicant.id%}
+                      <form action="{% url 'unassoc_user' jobtitle.id %}" method="post">
+                        {% csrf_token %}
+                        <div style="display: flex; justify-content: center; margin: 5px">
+                          <button style="background-color:#464E47; color: white" type="submit" class="button is-small">
+                            Remove Application
+                          </button>
+                        </div>
+                      </form> </a>
+                    {%endif%}
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endfor %} 
+      {% endif %}
+    </div>
+    <div class="columns is-multiline">
+      <div class="column is-full">
         <h1 class="title is-3">Saved Jobs</h1>
       </div>
       {% for jobtitle in applicant.joblist.all %}
