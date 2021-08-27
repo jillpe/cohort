@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
@@ -7,19 +8,22 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms.models import model_to_dict
 from .models import User, Comment, JobTitle, Tag, Applicant
-from .forms import CommentForm
+from .forms import CommentForm, JobTitleForm
 from .filter import JobTitleFilter
 
 def home(request):
-    return render(request, 'home.html')
+    job_title_form = JobTitleForm()
+    return render(request, 'home.html', {'job_title_form': job_title_form })
 
 def jobtitles_index(request):
   jobtitles = JobTitle.objects.all()
+  job_title_form = JobTitleForm()
   myFilter = JobTitleFilter(request.GET, queryset=jobtitles)
   jobtitles = myFilter.qs
-  return render(request, 'jobtitles/index.html', { 'jobtitles': jobtitles, 'myFilter': myFilter })
+  return render(request, 'jobtitles/index.html', { 'jobtitles': jobtitles, 'myFilter': myFilter, 'job_title_form': job_title_form })
 
 def jobtitles_detail(request, jobtitle_id):
+  job_title_form = JobTitleForm()
   jobtitle = JobTitle.objects.get(id=jobtitle_id)
   tags_jobtitle_doesnt_have = Tag.objects.exclude(id__in = jobtitle.tags.all().values_list('id'))
   comment_form = CommentForm()
@@ -28,6 +32,16 @@ def jobtitles_detail(request, jobtitle_id):
     'comment_form': comment_form,
     'tags': tags_jobtitle_doesnt_have,
   })
+
+@login_required
+def create_new_job(request):
+  form = JobTitleForm(request.POST)
+  if form.is_valid():
+    new_job = form.save(commit=False)
+    new_job.save()
+    # job_title = JobTitle.objects.get(id=new_job.id)
+    # job_title.user = request.user
+  return redirect('index')
 
 @login_required
 def add_comment(request, jobtitle_id):
