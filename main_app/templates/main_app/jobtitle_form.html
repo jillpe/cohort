@@ -11,9 +11,9 @@
         <div class="card-content">
         <form action="" method="POST" >
             {% csrf_token %}
-            <table>
+            <div>
                 {{ form.as_p }}
-            </table>
+            </div>
             <br>
             <div style="display: flex; justify-content: center; margin: 5px">
             <input style="background-color: #464E47; color: white" type="submit" value="Submit!" class="button is-small">
