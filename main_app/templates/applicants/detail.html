@@ -79,4 +79,26 @@
   {% else %}
     <h1 class="title is-1">This Profile is Private</h1>
   {% endif %}
+  <div id="modal-ter" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head" style="background-color: #bad4aa">
+        <p class="modal-card-title is-title">Personal Info</p>
+        <button class="delete" id = "close-job-button" aria-label="close"></button>
+      </header>
+      <form action="{% url 'applicants_add_info' applicant.id %}" method="POST">
+        {% csrf_token %}
+        <section class="modal-card-body"  style=" background-color: #EBF5DF;"> 
+          <div class="section" style="height: 100">     
+          {{personal_info_form.as_table}}
+            <input type="hidden" name="user" value={{request.user.id}}>
+          </div>
+        </section>
+        <footer class="modal-card-foot" style="background-color: #bad4aa">
+          <button type = "submit" style="background-color:#464E47; color: white;" class="button is-success">Submit</button>
+          <button id = "cancel-job-button" style="background-color:#EDB458; color: white" class="button">Cancel</button>
+        </footer>
+      </form>
+    </div>
+  </div>
 {% endblock %}
