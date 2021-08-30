@@ -23,6 +23,7 @@ urlpatterns = [
     path('tags/', views.TagList.as_view(), name='tags_index'),
     path('tags/create/', views.TagCreate.as_view(), name='tags_create'),
     path('tags/create_new_tag', views.create_new_tag, name='create_new_tag'),
+    path('tags/<int:pk>/', views.TagDetail.as_view(), name='tags_detail'),
     path('tags/<int:pk>/update/', views.TagUpdate.as_view(), name='tags_update'),
     path('tags/<int:pk>/delete/', views.TagDelete.as_view(), name='tags_delete'),
     path('accounts/signup/', views.signup, name='signup'),

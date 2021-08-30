@@ -105,6 +105,7 @@
             {% if jobtitle.tags.count %} 
               <div class="tags">
                 {% for tag in jobtitle.tags.all %}
+                <a href = "{% url 'tags_detail' tag.id%}">
                   <div class = "tag is-small" style="background-color: #EDB458; color:white;">
                     {{ tag.name }}
                     <form action = "{% url 'unassoc_tag' jobtitle.id tag.id %}" method = "post">
@@ -112,6 +113,7 @@
                       <button type= "submit" class="delete is-small"></button>
                     </form>
                   </div>
+                  </a>
                 {% endfor %} 
               </div>
             {% else %}
@@ -123,6 +125,7 @@
             <div class="tags">
               {% if tags.count %} 
                 {% for tag in tags.all %}
+                <a href = "{% url 'tags_detail' tag.id%}">
                   <div class = "tag is-small" style="background-color: #EDB458; color:white;">
                     {{ tag.name }}
                     <form action = "{% url 'assoc_tag' jobtitle.id tag.id %}" method = "post">
@@ -130,6 +133,7 @@
                       <button type= "submit" class="delete is-small" style = "transform:rotate(45deg);"></button>
                     </form>
                   </div>
+                  </a>
                 {% endfor %} 
               {% else %}
                 <div class = "tag is-small">No Tags</div>
