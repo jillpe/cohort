@@ -108,8 +108,8 @@ class TagDelete(LoginRequiredMixin, DeleteView):
 def create_new_tag(request):
   form = TagForm(request.POST)
   if form.is_valid():
-    new_tag = form.save(commit=False)
-    new_tag.save()
+    new_tag = form.save()
+    new_tag.user.set([request.user]);
   return redirect('index')
 
 @login_required
