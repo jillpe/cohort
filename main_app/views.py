@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms.models import model_to_dict
 from .models import User, Comment, JobTitle, Tag, Applicant
-from .forms import CommentForm, JobTitleForm, TagForm
+from .forms import CommentForm, JobTitleForm, TagForm, PersonalInfoForm
 from .filter import JobTitleFilter
 
 def home(request):
@@ -131,8 +131,9 @@ def unassoc_tag(request, jobtitle_id, tag_id):
 @login_required
 def applicants_detail(request, applicant_id):
   applicant = Applicant.objects.get(id=applicant_id)
+  personal_info_form = PersonalInfoForm(initial=model_to_dict(applicant))
   job_title_form = JobTitleForm()
-  return render(request, 'applicants/detail.html', {'applicant':applicant, 'job_title_form': job_title_form})
+  return render(request, 'applicants/detail.html', {'applicant':applicant, 'job_title_form': job_title_form, 'personal_info_form': personal_info_form})
 
 @login_required
 def assoc_job(request, jobtitle_id):
@@ -173,8 +174,12 @@ def applicants_change_privacy(request, applicant_id):
   return redirect('applicants_detail', applicant_id=applicant_id)
 
 def applicants_add_info(request, applicant_id):
-  applicant = Applicant.objects.get(id=applicant_id)
-  user = User.objects.get(id=request.user.id)
+  form = PersonalInfoForm(request.POST, instance=Applicant.objects.get(id=applicant_id))
+  if form.is_valid():
+    form.save()
+  return redirect('applicants_detail', applicant_id=applicant_id)
+  
+
 
 def signup(request):
   error_message = ''
