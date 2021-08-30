@@ -21,7 +21,7 @@
   {% endif %}
 
   {% if user.is_authenticated %}
-    <div class="card" style="background-color: #EBF5DF; margin-top: 30px">
+    <div class="card" style="height: 300px; background-color: #EBF5DF; margin-top: 30px">
       <div class = "columns">
         <div class="column is-6">
           <div class = "card-content">
@@ -68,7 +68,7 @@
     </div>
     <div class = "columns" style="margin-top:20px">
       <div class = "column is-6">
-        <div class = "card" style="background-color: #EBF5DF; padding: 15px;">
+        <div class = "card" style="height: 300px; background-color: #EBF5DF; padding: 15px;">
           <div>
             <h3 class="title is-3"> Users who have applied for this job:</h3>
             {%if jobtitle.user.all%}
@@ -99,7 +99,7 @@
         </div>
       </div>
       <div class = "column is-6">
-        <div class="card" style="background-color: #EBF5DF; padding: 15px;">
+        <div class="card" style=" background-color: #EBF5DF; padding: 15px;">
           <div class="col s6">
             <h3 class="title is-3">Tags</h3>
             {% if jobtitle.tags.count %} 
