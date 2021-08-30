@@ -1,4 +1,4 @@
-#id_company, #id_name, #id_tags__name, #id_salary, #id_link, #id_experience, #id_location, #id_password1, #id_password2, #id_comment {
+#id_company, #id_name, #id_tags__name, #id_salary, #id_link, #id_experience, #id_location, #id_password1, #id_password2, #id_comment, #id_first_name, #id_last_name, #id_pronoun, #id_state_location, #id_city_location, #id_about_me {
   -moz-appearance: none;
   -webkit-appearance: none;
   align-items: center;

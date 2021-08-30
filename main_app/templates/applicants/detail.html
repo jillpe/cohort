@@ -14,6 +14,7 @@
         {% endif %}
       </button>
     </form>
+    <button id="add-applicant-button">Personal Info</button>
     <br>
   {% endif %}
   {%if user.applicant.id == applicant.id or applicant.is_public %}
@@ -79,4 +80,46 @@
   {% else %}
     <h1 class="title is-1">This Profile is Private</h1>
   {% endif %}
+  <div id="modal-applicant" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head" style="background-color: #bad4aa">
+        <p class="modal-card-title is-title">Personal Info</p>
+        <button class="delete" id = "close-applicant-button" aria-label="close"></button>
+      </header>
+      <form action="{% url 'applicants_add_info' applicant.id %}" method="POST">
+        {% csrf_token %}
+        <section class="modal-card-body"  style=" background-color: #EBF5DF;"> 
+          <div class="section" style="height: 100">     
+          {{personal_info_form.as_p}}
+            <input type="hidden" name="user" value={{request.user.id}}>
+          </div>
+        </section>
+        <footer class="modal-card-foot" style="background-color: #bad4aa">
+          <button type = "submit" style="background-color:#464E47; color: white;" class="button is-success">Submit</button>
+          <button id = "cancel-applicant-button" style="background-color:#EDB458; color: white" class="button">Cancel</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+  <script>
+    const addApplicantButton = document.querySelector("#add-applicant-button");
+    const closeApplicantButton = document.querySelector("#close-applicant-button");
+    const cancelApplicantButton = document.querySelector("#cancel-applicant-button");
+    const modalApplicant = document.getElementById("modal-applicant");
+
+    addApplicantButton.addEventListener("click", function (e) {
+      console.log('hello')
+      modalApplicant.classList.add("is-active");
+    })
+    
+    closeApplicantButton.addEventListener("click", function (e) {
+      modalApplicant.classList.remove("is-active");
+    })
+    
+    cancelApplicantButton.addEventListener("click", function (e) {
+      modalApplicant.classList.remove("is-active");
+    })
+    
+  </script>
 {% endblock %}
