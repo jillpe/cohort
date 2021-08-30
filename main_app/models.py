@@ -35,7 +35,7 @@ class Applicant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     joblist = models.ManyToManyField(JobTitle)
     is_public = models.BooleanField(default=True)
-    first_name = models.CharField(max_length=35, default="Enter")
+    first_name = models.CharField(max_length=35, blank=True)
     last_name = models.CharField(max_length=35, default="Enter")
     pronoun = models.CharField(max_length=50, default="Enter")
     about_me = models.TextField(max_length=500, default="Enter")

@@ -14,10 +14,17 @@
         {% endif %}
       </button>
     </form>
-    <button id="add-applicant-button">Personal Info</button>
+    <button class="button" style="background-color:#464E47; color: white; display: flex; justify-content: center;" id="add-applicant-button">Add/Update Personal Info</button>
     <br>
   {% endif %}
   {%if user.applicant.id == applicant.id or applicant.is_public %}
+    <div class="card" style="background-color: #EBF5DF">
+    <div class = "card-content"> <strong>First Name: </strong>{{ applicant.first_name }}</div>
+    <div class = "card-content"> <strong>Last Name: </strong>{{ applicant.last_name }}</div>
+    <div class = "card-content"> <strong>Preffered Pronoun: </strong>{{ applicant.pronoun }}</div>
+    <div class = "card-content"> <strong>About Me: </strong>{{ applicant.about_me }}</div>
+    <div class = "card-content"> <strong>Location: </strong>{{ applicant.city_location }}/{{ applicant.state_location }}</div>
+  </div>
     <div class="columns is-multiline">
       <div class="column is-full">
         <h1 class="title is-3">Jobs {{applicant}} has applied to</h1>

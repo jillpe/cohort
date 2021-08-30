@@ -127,8 +127,8 @@ def unassoc_tag(request, jobtitle_id, tag_id):
 
 @login_required
 def applicants_detail(request, applicant_id):
-  personal_info_form = PersonalInfoForm()
   applicant = Applicant.objects.get(id=applicant_id)
+  personal_info_form = PersonalInfoForm(initial=model_to_dict(applicant))
   job_title_form = JobTitleForm()
   return render(request, 'applicants/detail.html', {'applicant':applicant, 'job_title_form': job_title_form, 'personal_info_form': personal_info_form})
 
@@ -171,11 +171,10 @@ def applicants_change_privacy(request, applicant_id):
   return redirect('applicants_detail', applicant_id=applicant_id)
 
 def applicants_add_info(request, applicant_id):
-  form = PersonalInfoForm(request.POST)
+  form = PersonalInfoForm(request.POST, instance=Applicant.objects.get(id=applicant_id))
   if form.is_valid():
-    new_info = form.save(commit=False)
-    new_info.save()
-  return redirect('applicant_detail')
+    form.save()
+  return redirect('applicants_detail', applicant_id=applicant_id)
   
 
 
