@@ -1,7 +1,13 @@
 {% extends 'base.html' %} 
 {% block content %}
   <h2 class="title is-1" style= "display: flex; justify-content: center; white-space: nowrap;">
-    <a href = "{%url 'applicants_detail' applicant.id%}" style="color: #EDB458;">{{applicant}}'s &nbsp; </a> Profile
+    <a href = "{%url 'applicants_detail' applicant.id%}" style="color: #EDB458;">
+    {%if user.applicant.id == applicant.id %}
+      My
+    {% else %}
+      {{applicant}}'s
+    {% endif %}
+     &nbsp; </a> Profile
   </h2>
   {%if user.applicant.id == applicant.id %}
     <form action="{% url 'applicants_change_privacy' applicant.id %}" method='post' style="display: flex; justify-content: center;">

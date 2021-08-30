@@ -315,7 +315,7 @@ th:not([align]) {
 }
 
 html {
-  background-color: white;
+  background-color: #BAD4AA;
   font-size: 16px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -11805,7 +11805,8 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 }
 
 .footer {
-  background-color: #fafafa;
+  background-color: transparent;
   padding: 3rem 1.5rem 6rem;
+  bottom: 0; 
 }
 /*# sourceMappingURL=bulma.css.map */

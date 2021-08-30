@@ -21,7 +21,7 @@
   {% endif %}
 
   {% if user.is_authenticated %}
-    <div class="card" style="height: 300px; background-color: #EBF5DF; margin-top: 30px">
+    <div class="card" style="height: 300px; background-color: #EBF5DF; margin-top: 30px; height: fit-content;">
       <div class = "columns">
         <div class="column is-6">
           <div class = "card-content">
@@ -33,7 +33,7 @@
           </div>
         </div>
         {%if jobtitle.comment_set.all%}
-          <div class="column is-6">
+          <div class="column is-6" >
             <div class = "card-content">
               <table class="table is-fullwidth" style="background-color: transparent">
                 <thead>
@@ -149,7 +149,7 @@
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head" style="background-color: #bad4aa">
-              <p class="modal-card-title is-title">Add a Job</p>
+              <p class="modal-card-title is-title">Add a Tag</p>
               <button class="delete" id = "close-tag-button" aria-label="close"></button>
             </header>
             <form action="{% url 'create_new_tag' %}" method="POST">
