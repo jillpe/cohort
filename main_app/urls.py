@@ -6,7 +6,6 @@ urlpatterns = [
     path('jobtitles/', views.jobtitles_index, name='index'),
     path('jobtitles/<int:jobtitle_id>/', views.jobtitles_detail, name='detail'),
     path('jobtitles/create/', views.JobTitleCreate.as_view(), name='jobtitles_create'),
-    ####NEW THIS IS A TEST
     path('jobtitles/create_new_job', views.create_new_job, name='jobtitles_create_new_job'),
     path('jobtitles/<int:pk>/update/', views.JobTitleUpdate.as_view(), name='jobtitles_update'),
     path('jobtitles/<int:jobtitle_id>/add_comment/', views.add_comment, name='add_comment'),
@@ -23,6 +22,7 @@ urlpatterns = [
     path('jobtitles/<int:jobtitle_id>/unassoc_user/', views.unassoc_user, name='unassoc_user'),
     path('tags/', views.TagList.as_view(), name='tags_index'),
     path('tags/create/', views.TagCreate.as_view(), name='tags_create'),
+    path('tags/create_new_tag', views.create_new_tag, name='create_new_tag'),
     path('tags/<int:pk>/update/', views.TagUpdate.as_view(), name='tags_update'),
     path('tags/<int:pk>/delete/', views.TagDelete.as_view(), name='tags_delete'),
     path('accounts/signup/', views.signup, name='signup'),

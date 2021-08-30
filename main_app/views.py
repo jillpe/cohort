@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms.models import model_to_dict
 from .models import User, Comment, JobTitle, Tag, Applicant
-from .forms import CommentForm, JobTitleForm
+from .forms import CommentForm, JobTitleForm, TagForm
 from .filter import JobTitleFilter
 
 def home(request):
@@ -26,11 +26,14 @@ def jobtitles_detail(request, jobtitle_id):
   job_title_form = JobTitleForm()
   jobtitle = JobTitle.objects.get(id=jobtitle_id)
   tags_jobtitle_doesnt_have = Tag.objects.exclude(id__in = jobtitle.tags.all().values_list('id'))
+  tag_form = TagForm()
   comment_form = CommentForm()
   return render(request, 'jobtitles/detail.html', { 
     'jobtitle': jobtitle,
     'comment_form': comment_form,
     'tags': tags_jobtitle_doesnt_have,
+    'job_title_form':job_title_form,
+    'tag_form':tag_form
   })
 
 @login_required
@@ -39,8 +42,6 @@ def create_new_job(request):
   if form.is_valid():
     new_job = form.save(commit=False)
     new_job.save()
-    # job_title = JobTitle.objects.get(id=new_job.id)
-    # job_title.user = request.user
   return redirect('index')
 
 @login_required
@@ -68,10 +69,12 @@ def update_comment(request, jobtitle_id, comment_id):
   comment_form = CommentForm(initial=model_to_dict(comment))
   if request.user.id == comment.user.id:
     jobtitle.comment_set.remove(comment)
+    job_title_form = JobTitleForm()
     return render(request, 'jobtitles/detail.html', { 
     'jobtitle': jobtitle,
     'comment_id': comment_id,
-    'comment_form': comment_form 
+    'comment_form': comment_form,
+    'job_title_form': job_title_form
   })
   else:
     return redirect('detail', jobtitle_id=jobtitle_id)
@@ -102,6 +105,14 @@ class TagDelete(LoginRequiredMixin, DeleteView):
   success_url = '/tags/'
 
 @login_required
+def create_new_tag(request):
+  form = TagForm(request.POST)
+  if form.is_valid():
+    new_tag = form.save(commit=False)
+    new_tag.save()
+  return redirect('index')
+
+@login_required
 def assoc_tag(request, jobtitle_id, tag_id):
   JobTitle.objects.get(id=jobtitle_id).tags.add(tag_id)
   jobtitle = JobTitle.objects.get(id=jobtitle_id)
@@ -117,7 +128,8 @@ def unassoc_tag(request, jobtitle_id, tag_id):
 @login_required
 def applicants_detail(request, applicant_id):
   applicant = Applicant.objects.get(id=applicant_id)
-  return render(request, 'applicants/detail.html', {'applicant':applicant})
+  job_title_form = JobTitleForm()
+  return render(request, 'applicants/detail.html', {'applicant':applicant, 'job_title_form': job_title_form})
 
 @login_required
 def assoc_job(request, jobtitle_id):
@@ -160,7 +172,6 @@ def applicants_change_privacy(request, applicant_id):
 def applicants_add_info(request, applicant_id):
   applicant = Applicant.objects.get(id=applicant_id)
   user = User.objects.get(id=request.user.id)
-  
 
 def signup(request):
   error_message = ''
