@@ -81,10 +81,8 @@
       </nav>
     </header>
     <div class="is-medium" style="background-color: #bad4aa">
-      <main style="height: 100vh" id="wrapper" class="container is-fluid">
-        <div class="section" style="height: 100">
+      <main style="height: 100vh" id="wrapper" class="container is-fluid" style="margin-bottom:500px">
           {% block content %} {% endblock %}
-        </div>
         <div id="modal-ter" class="modal">
           <div class="modal-background"></div>
           <div class="modal-card">
@@ -107,15 +105,13 @@
             </form>
           </div>
         </div>
-
-
-      </main>
-    </div>
-    <footer class="">
+    <footer style="">
       <div class="has-text-centered">
         All Rights Reserved, &copy; 2021 Cohort &nbsp;
       </div>
     </footer>
+      </main>
+    </div>
   </body>
   <script>
     const navButton = document.querySelector(
