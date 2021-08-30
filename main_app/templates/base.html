@@ -42,45 +42,41 @@
         <div class="navbar-menu" id="navbarBasicExample">
           <div class="navbar-end">
           <div class="navbar-item">
-                <a
-                  href="{% url 'index' %}"
-                  style="color: #edb458"
-                >
-                  View all Jobs
-                </a>
+            <a
+              href="{% url 'index' %}"
+              style="color: #edb458"
+            >
+              View all Jobs
+            </a>
           </div>
-
-          <div class="navbar-item">
-                <a
-                  id = "add-job-button"
-                  style="color: #edb458"
-                >
-                  Add a Job
-                </a>
-          </div>
-              </div>
+          {% if user.is_authenticated %}
+            <div class="navbar-item">
+              <a
+                id = "add-job-button"
+                style="color: #edb458"
+              >
+                Add a Job
+              </a>
             </div>
-            {% if user.is_authenticated %}
-              <div class="navbar-item">
-                <a
-                  href="{% url 'applicants_detail' user.applicant.id%}"
-                  style="color: #edb458"
-                >
-                  View Profile
-                </a>
-              </div>
-              <div class="navbar-item">
-                <a href="{% url 'logout' %}" style="color: #edb458"> Log Out</a>
-              </div>
-            {%else %}
-              <div class="navbar-item">
-                <a href="{% url 'login' %}" style="color: #edb458"> Log In</a>
-              </div>
-              <div class="navbar-item">
-                <a href="{% url 'signup' %}" style="color: #edb458"> Sign Up</a>
-              </div>
-            {% endif %}
-          </div>
+            <div class="navbar-item">
+              <a
+                href="{% url 'applicants_detail' user.applicant.id%}"
+                style="color: #edb458"
+              >
+                View Profile
+              </a>
+            </div>
+            <div class="navbar-item">
+              <a href="{% url 'logout' %}" style="color: #edb458"> Log Out</a>
+            </div>
+          {%else %}
+            <div class="navbar-item">
+              <a href="{% url 'login' %}" style="color: #edb458"> Log In</a>
+            </div>
+            <div class="navbar-item">
+              <a href="{% url 'signup' %}" style="color: #edb458"> Sign Up</a>
+            </div>
+          {% endif %}
         </div>
       </nav>
     </header>
@@ -111,6 +107,8 @@
             </form>
           </div>
         </div>
+
+
       </main>
     </div>
     <footer class="">
