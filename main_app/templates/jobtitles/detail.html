@@ -21,7 +21,7 @@
   {% endif %}
 
   {% if user.is_authenticated %}
-    <div class="card" style="background-color: #EBF5DF; margin-top: 30px">
+    <div class="card" style="height: 300px; background-color: #EBF5DF; margin-top: 30px">
       <div class = "columns">
         <div class="column is-6">
           <div class = "card-content">
@@ -68,7 +68,7 @@
     </div>
     <div class = "columns" style="margin-top:20px">
       <div class = "column is-6">
-        <div class = "card" style="background-color: #EBF5DF; padding: 15px;">
+        <div class = "card" style="height: 300px; background-color: #EBF5DF; padding: 15px;">
           <div>
             <h3 class="title is-3"> Users who have applied for this job:</h3>
             {%if jobtitle.user.all%}
@@ -99,7 +99,7 @@
         </div>
       </div>
       <div class = "column is-6">
-        <div class="card" style="background-color: #EBF5DF; padding: 15px;">
+        <div class="card" style=" background-color: #EBF5DF; padding: 15px;">
           <div class="col s6">
             <h3 class="title is-3">Tags</h3>
             {% if jobtitle.tags.count %} 
@@ -134,15 +134,60 @@
               {% else %}
                 <div class = "tag is-small">No Tags</div>
               {% endif %}
-            <a href = "{% url 'tags_create' %}" style="background-color:#464E47; color: white; text-decoration:none;" type="submit" class="tag is-small"> Create A New Tag</a>
+              <a id="add-tag-button" style="background-color:#464E47; color: white; text-decoration:none;" type="submit" class="tag is-small"> Create A New Tag</a>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div id="modal-tag" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head" style="background-color: #bad4aa">
+              <p class="modal-card-title is-title">Add a Job</p>
+              <button class="delete" id = "close-tag-button" aria-label="close"></button>
+            </header>
+            <form action="{% url 'create_new_tag' %}" method="POST">
+              {% csrf_token %}
+              <section class="modal-card-body"  style=" background-color: #EBF5DF;"> 
+                <div class="section" style="height: 100">     
+                {{tag_form.as_table}}
+                  <input type="hidden" name="user" value={{request.user.id}}>
+                </div>
+              </section>
+              <footer class="modal-card-foot" style="background-color: #bad4aa">
+                <button type = "submit" style="background-color:#464E47; color: white;" class="button is-success">Add Tag</button>
+                <button id = "cancel-tag-button" style="background-color:#EDB458; color: white" class="button">Cancel</button>
+              </footer>
+            </form>
+          </div>
+        </div>
+
+
+
   {%endif%}
   <script>
-    const selectEl = document.getElementById('id_tag');
-    M.FormSelect.init(selectEl);
+
+    const addTagButton = document.getElementById('add-tag-button');
+    const closeTagButton = document.getElementById('close-tag-button');
+    const cancelTagButton = document.getElementById('cancel-tag-button');
+
+    const modalTag = document.getElementById("modal-tag");
+
+    addTagButton.addEventListener("click", (e)=> {
+      console.log(modalTag)
+      modalTag.classList.add("is-active");
+      console.log(modalTag)
+    })
+
+    closeTagButton.addEventListener("click", function (e) {
+      modalTag.classList.remove("is-active");
+    })
+    
+    cancelTagButton.addEventListener("click", function (e) {
+      modalTag.classList.remove("is-active");
+    })
+
   </script>
 {% endblock %} 
