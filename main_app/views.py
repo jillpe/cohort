@@ -8,8 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms.models import model_to_dict
 from .models import User, Comment, JobTitle, Tag, Applicant
-
-from .forms import CommentForm, JobTitleForm, TagForm
+from .forms import CommentForm, JobTitleForm, TagForm, PersonalInfoForm
 from .filter import JobTitleFilter
 
 def home(request):
@@ -131,7 +130,7 @@ def applicants_detail(request, applicant_id):
   personal_info_form = PersonalInfoForm()
   applicant = Applicant.objects.get(id=applicant_id)
   job_title_form = JobTitleForm()
-  return render(request, 'applicants/detail.html', {'applicant':applicant, 'job_title_form': job_title_form})
+  return render(request, 'applicants/detail.html', {'applicant':applicant, 'job_title_form': job_title_form, 'personal_info_form': personal_info_form})
 
 @login_required
 def assoc_job(request, jobtitle_id):
