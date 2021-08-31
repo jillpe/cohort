@@ -7,7 +7,7 @@
     </div>
   <div id="filter" class="menu">
     <div class="card-content">
-      <span class="title" >Filter by:</span>
+      <span class="title" >Search by:</span>
       <form method="get" style= "margin-top: 10px; display: flex; flex-direction: column; align-content: center">
         {{myFilter.form.as_p}} 
         <br/>
@@ -50,5 +50,21 @@
       </div>
     {% endfor %}
   </div>
+
+
+  <script>
+  const companyLabel = [...document.querySelectorAll('label')].filter(x=> x.htmlFor==='id_company')[0]
+  companyLabel.innerHTML = 'Company:'
+
+  const positionLabel = [...document.querySelectorAll('label')].filter(x=> x.htmlFor==='id_name')[0]
+  positionLabel.innerHTML = 'Position:'
+
+  const tagLabel = [...document.querySelectorAll('label')].filter(x=> x.htmlFor==='id_tags__name')[0]
+  tagLabel.innerHTML = 'Tag:'
+
+  const salaryLabel = [...document.querySelectorAll('label')].filter(x=> x.htmlFor==='id_salary')[0]
+  salaryLabel.innerHTML = 'Minimum Salary:'
+
+  </script>
   
  {% endblock %}
